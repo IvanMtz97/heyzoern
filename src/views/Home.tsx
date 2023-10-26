@@ -10,6 +10,9 @@ import ProfileButton from "../components/ProfileButton";
 import GradientText from "../components/GradientText";
 import SearchInput from "../components/SearchInput";
 import ChronologicalAgeGraph from "../components/ChronologicalAgeGraph";
+import ConnectHealthApp from "../components/ConnectHealthApp";
+import OptimizedBiomarkers from "../components/OptimizedBiomarkers";
+import PendingBiomarkers from "../components/PendingBiomarkers";
 
 function HomeView(): JSX.Element {
   return (
@@ -25,6 +28,11 @@ function HomeView(): JSX.Element {
         <View style={styles.graphContainer}>
           <ChronologicalAgeGraph />
         </View>
+        <View style={styles.connectContainer}>
+          <ConnectHealthApp />
+        </View>
+        <OptimizedBiomarkers />
+        <PendingBiomarkers />
       </ScrollView>
     </SafeAreaView>
   )
@@ -54,6 +62,10 @@ const styles = StyleSheet.create({
     height: 355,
     paddingHorizontal: 16,
     marginTop: 30,
+  },
+  connectContainer: {
+    paddingHorizontal: 16,
+    marginTop: 22,
   },
 });
 

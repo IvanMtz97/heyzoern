@@ -9,13 +9,16 @@ import {
 } from "react-native";
 import ChatRow, { ChatRowType } from "../components/Chat/ChatRow";
 
-function ChatView(): JSX.Element {
+function ChatView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView style={styles.chatContainer}>
       <ScrollView>
         <View style={styles.headerContainer}>
           <Text style={styles.headerTitle}>Chat</Text>
-          <TouchableOpacity style={styles.profileButton}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Profile")}
+            style={styles.profileButton}
+          >
             <Text style={styles.profileText}>MD</Text>
           </TouchableOpacity>
         </View>

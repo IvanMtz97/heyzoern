@@ -5,9 +5,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-function ProfileButton(): JSX.Element {
+function ProfileButton({ onPress }: any): JSX.Element {
   return (
-    <TouchableOpacity style={styles.profileButton}>
+    <TouchableOpacity onPress={onPress} style={styles.profileButton}>
       <Text style={styles.text}>MD</Text>
     </TouchableOpacity>
   )

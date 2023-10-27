@@ -27,10 +27,11 @@ function App(): JSX.Element {
         }}
         tabBar={props => <BottomTabNavigator {...props} />}
       >
-        <Tab.Screen name="Home" component={ProfileView} />
+        <Tab.Screen name="Home" component={HomeView} />
         <Tab.Screen name="Booking" component={BookingView} />
         <Tab.Screen name="Chat" component={ChatView} />
         <Tab.Screen name="Documments" component={DocumentsView} />
+        <Tab.Screen name="Profile" component={ProfileView} />
       </Tab.Navigator>
     </NavigationContainer>
   );

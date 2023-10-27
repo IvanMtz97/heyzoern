@@ -30,7 +30,7 @@ const routes = [
 
 function BottomTabNavigator(props: any): JSX.Element {
   function getIcon(routeName: string, activeIndex: number) {
-    if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0} />;
+    if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 4} />;
     if (routeName === "Booking") return <BookingIcon disabled={activeIndex !== 1} />;
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 2} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 3} />;

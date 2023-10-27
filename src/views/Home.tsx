@@ -14,13 +14,13 @@ import ConnectHealthApp from "../components/ConnectHealthApp";
 import OptimizedBiomarkers from "../components/OptimizedBiomarkers";
 import PendingBiomarkers from "../components/PendingBiomarkers";
 
-function HomeView(): JSX.Element {
+function HomeView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView>
       <ScrollView style={styles.viewContainer}>
         <View style={styles.welcomeContainer}>
           <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
-          <ProfileButton />
+          <ProfileButton onPress={() => navigation.navigate("Profile")} />
         </View>
         <View style={styles.searchContainer}>
           <SearchInput />

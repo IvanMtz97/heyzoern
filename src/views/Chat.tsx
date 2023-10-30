@@ -8,20 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import ChatRow, { ChatRowType } from "../components/Chat/ChatRow";
+import ViewHeader from "../components/ViewHeader";
 
 function ChatView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView style={styles.chatContainer}>
       <ScrollView>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerTitle}>Chat</Text>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Profile")}
-            style={styles.profileButton}
-          >
-            <Text style={styles.profileText}>MD</Text>
-          </TouchableOpacity>
-        </View>
+        <ViewHeader title="Chat" />
 
         <View style={styles.chatsContainer}>
           <ChatRow
@@ -59,31 +52,6 @@ const styles = StyleSheet.create({
   chatContainer: {
     backgroundColor: "white",
     height: "100%",
-  },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 19,
-    paddingTop: 39,
-    alignItems: "center",
-  },
-  headerTitle: {
-    color: "black",
-    fontSize: 40,
-    fontWeight: "600",
-  },
-  profileButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 32,
-    backgroundColor: "#B1C3FA",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  profileText: {
-    fontSize: 15,
-    color: "#213B8C",
-    fontWeight: "600",
   },
   chatsContainer: {
     width: "100%",

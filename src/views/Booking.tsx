@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import GradientText from "../components/GradientText";
+import ViewHeader from "../components/ViewHeader";
 import CalendarAddIcon from "../icons/CalendarAdd";
 import ClockIcon from "../icons/Clock";
 import HomeLocationIcon from "../icons/HomeLocation";
@@ -17,15 +18,7 @@ function BookingView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView style={styles.bookingContainer}>
       <ScrollView>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerTitle}>Appointment</Text>
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Profile")}
-              style={styles.profileButton}
-            >
-              <Text style={styles.profileText}>MD</Text>
-            </TouchableOpacity>
-        </View>
+        <ViewHeader title="Appointment" />
         <View style={styles.contentContainer}>
           <GradientText
             colors={["#6243e9", "#392685", "#392685"]}
@@ -118,31 +111,6 @@ const styles = StyleSheet.create({
   bookingContainer: {
     backgroundColor: "#FAF9F8",
     height: "100%",
-  },
-  headerContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 19,
-    paddingTop: 39,
-    alignItems: "center",
-  },
-  headerTitle: {
-    color: "black",
-    fontSize: 40,
-    fontWeight: "600",
-  },
-  profileButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 32,
-    backgroundColor: "#B1C3FA",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  profileText: {
-    fontSize: 15,
-    color: "#213B8C",
-    fontWeight: "600",
   },
   contentContainer: {
     paddingHorizontal: 19,

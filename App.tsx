@@ -15,6 +15,7 @@ import ChatView from './src/views/Chat';
 import DocumentsView from './src/views/Documents';
 import BottomTabNavigator from './src/components/BottomTabNavigator';
 import ProfileView from './src/views/Profile';
+import DiscoverView from './src/views/Discover';
 
 function App(): JSX.Element {
   const Tab = createBottomTabNavigator();
@@ -28,6 +29,7 @@ function App(): JSX.Element {
         tabBar={props => <BottomTabNavigator {...props} />}
       >
         <Tab.Screen name="Home" component={HomeView} />
+        <Tab.Screen name="Discover" component={DiscoverView} />
         <Tab.Screen name="Booking" component={BookingView} />
         <Tab.Screen name="Chat" component={ChatView} />
         <Tab.Screen name="Documments" component={DocumentsView} />

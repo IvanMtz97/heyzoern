@@ -1,0 +1,8 @@
+import * as React from "react";
+import Svg, { Path } from "react-native-svg";
+const DocumentIcon = (props: any) => (
+  <Svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <Path d="M8.32031 0.179688L13.3203 5.17969V15.1797C13.3203 15.6224 13.151 16 12.8125 16.3125C12.5 16.651 12.1224 16.8203 11.6797 16.8203H1.64062C1.19792 16.8203 0.807292 16.651 0.46875 16.3125C0.15625 16 0 15.6224 0 15.1797V1.82031C0 1.3776 0.15625 1 0.46875 0.6875C0.807292 0.348958 1.21094 0.179688 1.67969 0.179688H8.32031ZM10 13.5V11.8203H3.32031V13.5H10ZM10 10.1797V8.5H3.32031V10.1797H10ZM7.5 6H12.0703L7.5 1.42969V6Z" fill="#6243E9"/>
+  </Svg>
+)
+export default DocumentIcon;

@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   moreCircle: {
     backgroundColor: "white",
     borderWidth: 1,
-    borderColor: "EAE6DE",
+    borderColor: "#EAE6DE",
   },
   ownLabel: {
     color: "#213B8C",

@@ -1,6 +1,7 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
 
+
 /**
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
@@ -67,6 +68,8 @@ def enableProguardInReleaseBuilds = false
  * this variant is about 6MiB larger per architecture than default.
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
+def fronteggDomain = 'hey-zoe-dev.frontegg.com'
+def fronteggClientId = '00d54cf6-3da2-42e6-92de-2c7693a2afde'
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -80,6 +83,13 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        manifestPlaceholders = [
+            "package_name": applicationId,
+            "frontegg_domain": fronteggDomain,
+            "frontegg_client_id": fronteggClientId
+        ]
+        buildConfigField "String", 'FRONTEGG_DOMAIN', "\"$fronteggDomain\""
+        buildConfigField "String", 'FRONTEGG_CLIENT_ID', "\"$fronteggClientId\""
     }
     signingConfigs {
         debug {
@@ -100,6 +110,9 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 

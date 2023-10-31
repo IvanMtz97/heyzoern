@@ -76,8 +76,8 @@ function DocumentsView(): JSX.Element {
 
           <View style={styles.documentsList}>
 
-            {documents.map((d) => (
-              <Document name={d.name} authors={d.authors} />
+            {documents.map((d, i) => (
+              <Document key={d.name + "" + i} name={d.name} authors={d.authors} />
             ))}
 
           </View>

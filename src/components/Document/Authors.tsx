@@ -35,7 +35,7 @@ function Authors({ data }: Props): JSX.Element {
         const names = d.name.split(" ");
         return (
           <View
-            key={d.name}
+            key={d.name + "" + i}
             style={[
               styles.authorCircle,
               i === 0 && styles.moreCircle,

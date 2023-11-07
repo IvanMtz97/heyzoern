@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
+  Image,
 } from "react-native";
 import BookingIcon from "../../icons/Booking";
 import ChatIcon from "../../icons/Chat";
@@ -14,14 +15,19 @@ function BottomTabNavigator(props: any): JSX.Element {
   function getIcon(routeName: string, activeIndex: number) {
     if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 5} />;
     if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
-    if (routeName === "Booking") return <BookingIcon disabled={activeIndex !== 2} />;
+    if (routeName === "Booking") {
+      if (activeIndex !== 2) {
+        return <Image source={require("../../assets/Calendar.png")} />
+      }
+      return <BookingIcon disabled={activeIndex !== 2} />;
+    }
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
   }
 
   return (
     <View style={styles.container}>
-      {props.state.routeNames.filter((route) => route !== "Profile").map((route: string, i: number) => (
+      {props.state.routeNames.filter((route: string) => route !== "Profile" && route !== "Signin").map((route: string, i: number) => (
         <TouchableOpacity
           key={route + "" + i}
           style={styles.tabButton}

@@ -68,7 +68,7 @@ def enableProguardInReleaseBuilds = false
  * this variant is about 6MiB larger per architecture than default.
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
-def fronteggDomain = 'hey-zoe-dev.frontegg.com'
+def fronteggDomain = 'dev-auth.heyzoe.com'
 def fronteggClientId = '00d54cf6-3da2-42e6-92de-2c7693a2afde'
 
 android {

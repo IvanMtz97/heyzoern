@@ -27,12 +27,19 @@ function BottomTabNavigator(props: any): JSX.Element {
 
   return (
     <View style={styles.container}>
-      {props.state.routeNames.filter((route: string) => route !== "Profile" && route !== "Signin").map((route: string, i: number) => (
+      {props.state.routeNames
+        .filter((route: string) =>
+          route !== "Profile" &&
+          route !== "Discover" &&
+          route !== "Documments" &&
+          route !== "Signin"
+        )
+        .map((route: string, i: number) => (
         <TouchableOpacity
           key={route + "" + i}
           style={styles.tabButton}
           onPress={() => {
-            if (props.state.index !== i) {
+            if (props.state.index !== props.state.routeNames.indexOf(route)) {
               props.navigation.navigate(route);
             }
           }}

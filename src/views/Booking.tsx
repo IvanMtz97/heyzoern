@@ -10,9 +10,13 @@ import {
 } from "react-native";
 import GradientText from "../components/GradientText";
 import ViewHeader from "../components/ViewHeader";
+import BookingClockIcon from "../icons/BookingClock";
 import CalendarAddIcon from "../icons/CalendarAdd";
+import ChatIcon from "../icons/Chat";
 import ClockIcon from "../icons/Clock";
+import DirectionsIcon from "../icons/Directions";
 import HomeLocationIcon from "../icons/HomeLocation";
+import TelephoneIcon from "../icons/TelephoneIcon";
 
 function BookingView({ navigation }: any): JSX.Element {
   return (
@@ -28,7 +32,7 @@ function BookingView({ navigation }: any): JSX.Element {
           </GradientText>
 
           <View style={styles.topContainer}>
-            <View style={styles.purpleContainer}>
+            <TouchableOpacity style={styles.purpleContainer}>
               <Text style={styles.appointmentDurationLabel}>12.30pm - 3.30pm</Text>
               <Text style={styles.discoveryCallLabel}>Discovery call</Text>
               <View style={styles.indicatorRow}>
@@ -47,10 +51,16 @@ function BookingView({ navigation }: any): JSX.Element {
 
               <View style={styles.buttonsContainer}>
                 <TouchableOpacity style={styles.confirmationButton}>
-                  <Text style={styles.buttonText}>Yes</Text>
+                  <ChatIcon disabled />
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.confirmationButton}>
-                  <Text style={styles.buttonText}>No</Text>
+                  <TelephoneIcon />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.confirmationButton}>
+                  <DirectionsIcon />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.confirmationButton}>
+                  <BookingClockIcon />
                 </TouchableOpacity>
               </View>
 
@@ -58,7 +68,7 @@ function BookingView({ navigation }: any): JSX.Element {
                 <Text style={styles.dateMonth}>May</Text>
                 <Text style={styles.dateDay}>3</Text>
               </View>
-            </View>
+            </TouchableOpacity>
 
             <View style={styles.textsContainer}>
               <Image
@@ -169,10 +179,11 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
     marginTop: 15,
-    gap: 17,
+    gap: 10,
+    justifyContent: "space-between",
   },
   confirmationButton: {
-    width: 117,
+    width: 68,
     height: 49,
     backgroundColor: "#46328E",
     borderRadius: 70,

@@ -27,8 +27,6 @@ function Authors({ data }: Props): JSX.Element {
 
   }, [data]);
 
-  console.log({ authors });
-
   return (
     <View style={styles.authorsContainer}>
       {authors.map((d, i) => {

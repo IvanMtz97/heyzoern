@@ -13,12 +13,8 @@ import ChronologicalAgeGraph from "../components/ChronologicalAgeGraph";
 import ConnectHealthApp from "../components/ConnectHealthApp";
 import OptimizedBiomarkers from "../components/OptimizedBiomarkers";
 import PendingBiomarkers from "../components/PendingBiomarkers";
-import { useAuth } from '@frontegg/react-native';
 
 function HomeView({ navigation }: any): JSX.Element {
-  const { isAuthenticated, login, logout } = useAuth();
-  console.log({ isAuthenticated, login, logout });
-  
   return (
     <SafeAreaView>
       <ScrollView style={styles.viewContainer}>

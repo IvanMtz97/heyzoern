@@ -1,6 +1,7 @@
-import React from 'react';
-import Signin from './views/Signin';
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useAuth } from '@frontegg/react-native';
+import Signin from './views/Signin';
 import HomeView from './views/Home';
 import DiscoverView from './views/Discover';
 import BookingView from './views/Booking';
@@ -8,10 +9,20 @@ import ChatView from './views/Chat';
 import DocumentsView from './views/Documents';
 import BottomTabNavigator from './components/BottomTabNavigator';
 import ProfileView from './views/Profile';
+import UnauthorizedView from './views/Unauthorized';
 
 const Tab = createBottomTabNavigator();
 
 function Application(): JSX.Element {
+  const { isAuthenticated, login, logout, initializing, isLoading } = useAuth();
+  console.log("APP", { isAuthenticated, initializing, isLoading });
+
+  useEffect(() => {
+    // login();
+  }, []);
+
+  // if (!isAuthenticated && !initializing && !isLoading) return <UnauthorizedView />;
+
   return (
     <Tab.Navigator
       tabBar={props => <BottomTabNavigator {...props} />}

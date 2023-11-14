@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import ProfileButton from "../components/ProfileButton";
 import GradientText from "../components/GradientText";
@@ -18,13 +19,20 @@ function HomeView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView>
       <ScrollView style={styles.viewContainer}>
-        <View style={styles.welcomeContainer}>
-          <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
-          <ProfileButton onPress={() => navigation.navigate("Profile")} />
-        </View>
-        <View style={styles.searchContainer}>
-          <SearchInput />
-        </View>
+        <ImageBackground
+          style={styles.topContainer}
+          source={require("../assets/searchBackground.png")}
+        >
+          <View
+            style={styles.welcomeContainer}
+          >
+            <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
+            <ProfileButton onPress={() => navigation.navigate("Profile")} />
+          </View>
+          <View style={styles.searchContainer}>
+            <SearchInput />
+          </View>
+        </ImageBackground>
         <View style={styles.graphContainer}>
           <ChronologicalAgeGraph />
         </View>
@@ -42,6 +50,11 @@ const styles = StyleSheet.create({
   viewContainer: {
     backgroundColor: "#faf9f7",
     height: "100%",
+  },
+  topContainer: {
+    height: 191,
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(220, 220, 220, 0.28)",
   },
   welcomeContainer: {
     marginTop: 30,

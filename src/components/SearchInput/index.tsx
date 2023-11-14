@@ -19,9 +19,11 @@ function SearchInput(): JSX.Element {
         onChangeText={setSearchText}
         placeholder="Conditions, or procedures"
       />
-      <TouchableOpacity style={styles.searchButton}>
-        <SearchIcon />
-      </TouchableOpacity>
+      <View style={styles.searchButtonContainer}>
+        <TouchableOpacity style={styles.searchButton}>
+          <SearchIcon />
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
@@ -33,18 +35,23 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 1000,
     backgroundColor: "white",
+    elevation: 20, // Android
   },
   input: {
     paddingLeft: 40,
     paddingRight: 60,
   },
-  searchButton: {
+  searchButtonContainer: {
     backgroundColor: "#6243E9",
     width: 42,
     height: 42,
     borderRadius: 42,
     position: "absolute",
     right: 11,
+    elevation: 4,
+  },
+  searchButton: {
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },

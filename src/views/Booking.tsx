@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useMemo, useCallback, useEffect } from "react";
 import {
   SafeAreaView,
   Text,
@@ -8,6 +8,8 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import BottomSheet from '@gorhom/bottom-sheet';
+
 import GradientText from "../components/GradientText";
 import ViewHeader from "../components/ViewHeader";
 import BookingClockIcon from "../icons/BookingClock";
@@ -17,8 +19,23 @@ import ClockIcon from "../icons/Clock";
 import DirectionsIcon from "../icons/Directions";
 import HomeLocationIcon from "../icons/HomeLocation";
 import TelephoneIcon from "../icons/TelephoneIcon";
+import BookingDetailsView from "./BookinDetails";
+import WalletIcon from "../icons/Wallet";
+import VideoCallIcon from "../icons/VideoCall";
 
 function BookingView({ navigation }: any): JSX.Element {
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => ['1%', '100%'], []);
+  
+
+  const handleBookingButton = useCallback(() => {
+    bottomSheetRef.current?.expand();
+  }, [bottomSheetRef]);
+
+  useEffect(() => {
+    bottomSheetRef.current?.collapse();
+  }, [bottomSheetRef]);
+
   return (
     <SafeAreaView style={styles.bookingContainer}>
       <ScrollView>
@@ -32,7 +49,7 @@ function BookingView({ navigation }: any): JSX.Element {
           </GradientText>
 
           <View style={styles.topContainer}>
-            <TouchableOpacity style={styles.purpleContainer}>
+            <TouchableOpacity style={styles.purpleContainer} onPress={handleBookingButton}>
               <Text style={styles.appointmentDurationLabel}>12.30pm - 3.30pm</Text>
               <Text style={styles.discoveryCallLabel}>Discovery call</Text>
               <View style={styles.indicatorRow}>
@@ -43,9 +60,15 @@ function BookingView({ navigation }: any): JSX.Element {
               </View>
               <View style={styles.indicatorRow}>
                 <View style={styles.indicatorIconContainer}>
-                  <ClockIcon />
+                  <VideoCallIcon />
                 </View>
                 <Text style={styles.indicatorLabel}>Video call</Text>
+              </View>
+              <View style={styles.indicatorRow}>
+                <View style={styles.indicatorIconContainer}>
+                  <WalletIcon />
+                </View>
+                <Text style={styles.indicatorLabel}>$100</Text>
               </View>
               <Text style={styles.confirmationLabel}>Can you still make your appointment for today?</Text>
 
@@ -112,6 +135,14 @@ function BookingView({ navigation }: any): JSX.Element {
             </View>
           </View>
         </View>
+        <BottomSheet
+          ref={bottomSheetRef}
+          index={1}
+          snapPoints={snapPoints}
+          enablePanDownToClose
+        >
+          <BookingDetailsView />
+        </BottomSheet>
       </ScrollView>
     </SafeAreaView>
   )
@@ -140,7 +171,7 @@ const styles = StyleSheet.create({
   },
   purpleContainer: {
     width: "100%",
-    height: 265,
+    height: 285,
     borderRadius: 28,
     backgroundColor: "#36237D",
     paddingHorizontal: 25,

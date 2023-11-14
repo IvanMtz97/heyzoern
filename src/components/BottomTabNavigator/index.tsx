@@ -19,7 +19,7 @@ function BottomTabNavigator(props: any): JSX.Element {
       if (activeIndex !== 2) {
         return <Image source={require("../../assets/Calendar.png")} />
       }
-      return <BookingIcon disabled={activeIndex !== 2} />;
+      return <Image source={require("../../assets/CalendarFilled.png")} />
     }
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
@@ -31,7 +31,6 @@ function BottomTabNavigator(props: any): JSX.Element {
         .filter((route: string) =>
           route !== "Profile" &&
           route !== "Discover" &&
-          route !== "Documments" &&
           route !== "Signin"
         )
         .map((route: string, i: number) => (

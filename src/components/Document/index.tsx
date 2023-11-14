@@ -25,9 +25,11 @@ function Document({ name, authors }: Props): JSX.Element {
       </View>
       <View style={styles.rightContainer}>
         {authors?.length ? <Authors data={authors} /> : null}
-        <TouchableOpacity style={styles.moreButton}>
-          <EllipsisIcon />
-        </TouchableOpacity>
+        <View style={styles.moreButtonContainer}>
+          <TouchableOpacity style={styles.moreButton}>
+            <EllipsisIcon />
+          </TouchableOpacity>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  moreButton: {
+  moreButtonContainer: {
     width: 22,
     height: 22,
     borderRadius: 100,
@@ -78,6 +80,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 7,
+    elevation: 3,
+    backgroundColor: "white",
+  },
+  moreButton: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

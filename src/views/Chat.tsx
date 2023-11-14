@@ -21,26 +21,31 @@ function ChatView({ navigation }: any): JSX.Element {
             type={ChatRowType.SENDER}
             name="Tom Smith"
             profile="Colorado Sports Doctor"
+            onPress={() => navigation.navigate("ChatRoom")}
           />
           <ChatRow
             type={ChatRowType.USER}
             name="Matt Doyle"
             profile="Colorado Sports Doctor"
+            onPress={() => navigation.navigate("ChatRoom")}
           />
           <ChatRow
             type={ChatRowType.USER}
             name="Matt Doyle"
             profile="Colorado Sports Doctor"
+            onPress={() => navigation.navigate("ChatRoom")}
           />
           <ChatRow
             type={ChatRowType.USER}
             name="Matt Doyle"
             profile="Colorado Sports Doctor"
+            onPress={() => navigation.navigate("ChatRoom")}
           />
           <ChatRow
             type={ChatRowType.USER}
             name="Matt Doyle"
             profile="Colorado Sports Doctor"
+            onPress={() => navigation.navigate("ChatRoom")}
           />
         </View>
       </ScrollView>

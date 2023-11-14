@@ -11,6 +11,7 @@ import BottomTabNavigator from './components/BottomTabNavigator';
 import ProfileView from './views/Profile';
 import UnauthorizedView from './views/Unauthorized';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import ChatRoomView from './views/ChatRoom';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,6 +40,7 @@ function Application(): JSX.Element {
         <Tab.Screen name="Documments" component={DocumentsView} />
         <Tab.Screen name="Profile" component={ProfileView} />
         <Tab.Screen name="Signin" component={Signin} />
+        <Tab.Screen name="ChatRoom" component={ChatRoomView} />
       </Tab.Navigator>
     </GestureHandlerRootView>
   );

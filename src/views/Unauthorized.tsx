@@ -18,7 +18,7 @@ function UnauthorizedView(): JSX.Element {
 
   useEffect(() => {
     if (!initializing && !isLoading && isAuthenticated) {
-      navigation.navigate("Home");
+      navigation.navigate("Home" as never);
     }
   }, [isAuthenticated, initializing, isLoading]);
 

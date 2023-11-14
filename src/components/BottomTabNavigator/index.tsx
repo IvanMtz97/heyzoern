@@ -31,7 +31,8 @@ function BottomTabNavigator(props: any): JSX.Element {
         .filter((route: string) =>
           route !== "Profile" &&
           route !== "Discover" &&
-          route !== "Signin"
+          route !== "Signin" &&
+          route !== "ChatRoom"
         )
         .map((route: string, i: number) => (
         <TouchableOpacity

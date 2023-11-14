@@ -15,13 +15,14 @@ export type ChatRowProps = {
   type: ChatRowType;
   name: string;
   profile: string;
+  onPress: () => void;
 };
 
-function ChatRow({ type, name, profile }: ChatRowProps) {
+function ChatRow({ type, name, profile, onPress }: ChatRowProps) {
   const initials = name.split(" ");
 
   return (
-    <TouchableOpacity style={styles.chatRow}>
+    <TouchableOpacity style={styles.chatRow} onPress={onPress}>
       <View
         style={[
           styles.chatProfileContainer,

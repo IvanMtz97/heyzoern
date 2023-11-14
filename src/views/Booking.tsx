@@ -37,75 +37,110 @@ function BookingView({ navigation }: any): JSX.Element {
   }, [bottomSheetRef]);
 
   return (
-    <SafeAreaView style={styles.bookingContainer}>
-      <ScrollView>
-        <ViewHeader title="Appointment" />
-        <View style={styles.contentContainer}>
-          <GradientText
-            colors={["#6243e9", "#392685", "#392685"]}
-            style={styles.gradientTitle}
-          >
-            Wednesday, at 12.30pm
-          </GradientText>
+    <>
+      <SafeAreaView style={styles.bookingContainer}>
+        <ScrollView>
+          <ViewHeader title="Appointment" />
+          <View style={styles.contentContainer}>
+            <GradientText
+              colors={["#6243e9", "#392685", "#392685"]}
+              style={styles.gradientTitle}
+            >
+              Wednesday, at 12.30pm
+            </GradientText>
 
-          <View style={styles.topContainer}>
-            <TouchableOpacity style={styles.purpleContainer} onPress={handleBookingButton}>
-              <Text style={styles.appointmentDurationLabel}>12.30pm - 3.30pm</Text>
-              <Text style={styles.discoveryCallLabel}>Discovery call</Text>
-              <View style={styles.indicatorRow}>
-                <View style={styles.indicatorIconContainer}>
-                  <ClockIcon />
+            <View style={styles.topContainer}>
+              <TouchableOpacity style={styles.purpleContainer} onPress={handleBookingButton}>
+                <Text style={styles.appointmentDurationLabel}>12.30pm - 3.30pm</Text>
+                <Text style={styles.discoveryCallLabel}>Discovery call</Text>
+                <View style={styles.indicatorRow}>
+                  <View style={styles.indicatorIconContainer}>
+                    <ClockIcon />
+                  </View>
+                  <Text style={styles.indicatorLabel}>15 min</Text>
                 </View>
-                <Text style={styles.indicatorLabel}>15 min</Text>
-              </View>
-              <View style={styles.indicatorRow}>
-                <View style={styles.indicatorIconContainer}>
-                  <VideoCallIcon />
+                <View style={styles.indicatorRow}>
+                  <View style={styles.indicatorIconContainer}>
+                    <VideoCallIcon />
+                  </View>
+                  <Text style={styles.indicatorLabel}>Video call</Text>
                 </View>
-                <Text style={styles.indicatorLabel}>Video call</Text>
-              </View>
-              <View style={styles.indicatorRow}>
-                <View style={styles.indicatorIconContainer}>
-                  <WalletIcon />
+                <View style={styles.indicatorRow}>
+                  <View style={styles.indicatorIconContainer}>
+                    <WalletIcon />
+                  </View>
+                  <Text style={styles.indicatorLabel}>$100</Text>
                 </View>
-                <Text style={styles.indicatorLabel}>$100</Text>
-              </View>
-              <Text style={styles.confirmationLabel}>Can you still make your appointment for today?</Text>
+                <Text style={styles.confirmationLabel}>Can you still make your appointment for today?</Text>
 
-              <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.confirmationButton}>
-                  <ChatIcon disabled />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.confirmationButton}>
-                  <TelephoneIcon />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.confirmationButton}>
-                  <DirectionsIcon />
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.confirmationButton}>
-                  <BookingClockIcon />
-                </TouchableOpacity>
+                <View style={styles.buttonsContainer}>
+                  <TouchableOpacity style={styles.confirmationButton}>
+                    <ChatIcon disabled />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.confirmationButton}>
+                    <TelephoneIcon />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.confirmationButton}>
+                    <DirectionsIcon />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.confirmationButton}>
+                    <BookingClockIcon />
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.dateContainer}>
+                  <Text style={styles.dateMonth}>May</Text>
+                  <Text style={styles.dateDay}>3</Text>
+                </View>
+              </TouchableOpacity>
+
+              <View style={styles.textsContainer}>
+                <Image
+                  style={styles.bussinessImage}
+                  source={require("../assets/coloradosportsdoctor.png")}
+                />
+                <Text style={styles.titleLabel}>Colorado Sports Doctor</Text>
+                <View style={styles.homeLocationContainer}>
+                  <HomeLocationIcon />
+                  <Text style={styles.homeLocationLabel}>3301 N Miller Rd Ste 120, Scottsdale, AZ 85251</Text>
+                </View>
+              </View>
+              
+              <View style={styles.doctorDetailsContainer}>
+                <Image
+                  style={styles.doctorImage}
+                  source={{uri: "https://i.pinimg.com/564x/ab/68/8b/ab688b791dcd556181d2786f54db9fe6.jpg"}}
+                />
+                <View style={styles.doctorLabelsContainer}>
+                  <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
+                  <Text style={styles.doctorName}>Dr. David Wood</Text>
+                  <Image
+                    style={styles.verifiedImage}
+                    source={require("../assets/verified.png")}
+                  />
+                </View>
               </View>
 
-              <View style={styles.dateContainer}>
-                <Text style={styles.dateMonth}>May</Text>
-                <Text style={styles.dateDay}>3</Text>
-              </View>
-            </TouchableOpacity>
+              <View style={styles.actionsContainer}>
+                <View style={styles.addToCalendarContainer}>
+                  <TouchableOpacity style={styles.addToCalendarButton}>
+                    <CalendarAddIcon />
+                    <Text style={styles.addToCalendarButtonText}>Add to calendar</Text>
+                  </TouchableOpacity>
+                </View>
 
-            <View style={styles.textsContainer}>
-              <Image
-                style={styles.bussinessImage}
-                source={require("../assets/coloradosportsdoctor.png")}
-              />
-              <Text style={styles.titleLabel}>Colorado Sports Doctor</Text>
-              <View style={styles.homeLocationContainer}>
-                <HomeLocationIcon />
-                <Text style={styles.homeLocationLabel}>3301 N Miller Rd Ste 120, Scottsdale, AZ 85251</Text>
+                <TouchableOpacity style={styles.appleWalletButton}>
+                  <Image
+                    style={styles.appleWalletImage}
+                    source={require("../assets/applewallet.png")}
+                  />
+                </TouchableOpacity>
               </View>
             </View>
-            
-            <View style={styles.doctorDetailsContainer}>
+
+            <Text style={styles.pastAppointmentsTitle}>Past appointments</Text>
+
+            <View style={styles.appointmentContainer}>
               <Image
                 style={styles.doctorImage}
                 source={{uri: "https://i.pinimg.com/564x/ab/68/8b/ab688b791dcd556181d2786f54db9fe6.jpg"}}
@@ -119,32 +154,19 @@ function BookingView({ navigation }: any): JSX.Element {
                 />
               </View>
             </View>
-
-            <View style={styles.actionsContainer}>
-              <TouchableOpacity style={styles.addToCalendarButton}>
-                <CalendarAddIcon />
-                <Text style={styles.addToCalendarButtonText}>Add to calendar</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.appleWalletButton}>
-                <Image
-                  style={styles.appleWalletImage}
-                  source={require("../assets/applewallet.png")}
-                />
-              </TouchableOpacity>
-            </View>
           </View>
-        </View>
-        <BottomSheet
+        </ScrollView>
+      </SafeAreaView>
+      
+      {/* <BottomSheet
           ref={bottomSheetRef}
           index={1}
           snapPoints={snapPoints}
           enablePanDownToClose
         >
           <BookingDetailsView />
-        </BottomSheet>
-      </ScrollView>
-    </SafeAreaView>
+        </BottomSheet> */}
+    </>
   )
 }
 
@@ -157,6 +179,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 19,
   },
   gradientTitle: {
+    color: "#6243e9",
     fontSize: 25,
     fontWeight: "600",
   },
@@ -318,15 +341,20 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  addToCalendarButton: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+  addToCalendarContainer: {
     width: 150,
     height: 43,
+    elevation: 3,
+    backgroundColor: "white",
     borderRadius: 7,
     borderWidth: 1,
     borderColor: "#DDDEDF",
+  },
+  addToCalendarButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   addToCalendarButtonText: {
     color: "black",
@@ -341,6 +369,26 @@ const styles = StyleSheet.create({
   appleWalletImage: {
     width: 135,
     height: 42,
+  },
+  pastAppointmentsTitle: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "black",
+    marginTop: 10,
+  },
+  appointmentContainer: {
+    width: "100%",
+    height: 126,
+    backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: "#E6E6E6",
+    borderRadius: 20,
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    marginBottom: 10,
   },
 });
 

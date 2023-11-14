@@ -17,7 +17,6 @@ function BookingDetailsHandle(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    backgroundColor: "red",
     height: 20,
   },
 });

@@ -153,6 +153,11 @@ function BookingView({ navigation }: any): JSX.Element {
                   source={require("../assets/verified.png")}
                 />
               </View>
+
+              <View style={styles.appointmentDateContainer}>
+                <Text style={styles.appointmentDateMonth}>May</Text>
+                <Text style={styles.appointmentDateDay}>3</Text>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -389,6 +394,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     marginBottom: 10,
+  },
+  appointmentDateContainer: {
+    width: 59,
+    height: 63,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: "#F3F3F3",
+    position: "absolute",
+    right: 40,
+    top: 48,
+  },
+  appointmentDateMonth: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 12,
+    borderBottomWidth: 2,
+    lineHeight: 20,
+    borderColor: "#F3F3F3",
+  },
+  appointmentDateDay: {
+    color: "black",
+    textAlign: "center",
+    fontSize: 25,
   },
 });
 

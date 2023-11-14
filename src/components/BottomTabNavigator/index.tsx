@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import BookingIcon from "../../icons/Booking";
+import CalendarFilledIcon from "../../icons/CalendarFilled";
 import ChatIcon from "../../icons/Chat";
 import CompassIcon from "../../icons/Compass";
 import DocumentsIcon from "../../icons/Documents";
@@ -17,9 +17,9 @@ function BottomTabNavigator(props: any): JSX.Element {
     if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
     if (routeName === "Booking") {
       if (activeIndex !== 2) {
-        return <Image source={require("../../assets/Calendar.png")} />
+        return <Image source={require("../../assets/Calendar.png")} />;
       }
-      return <Image source={require("../../assets/CalendarFilled.png")} />
+      return <CalendarFilledIcon />;
     }
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;

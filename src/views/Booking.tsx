@@ -22,24 +22,20 @@ import TelephoneIcon from "../icons/TelephoneIcon";
 import BookingDetailsView from "./BookinDetails";
 import WalletIcon from "../icons/Wallet";
 import VideoCallIcon from "../icons/VideoCall";
+import ArrowDown from "../icons/ArrowDown";
 
 function BookingView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['1%', '100%'], []);
-  
+  const snapPoints = useMemo(() => ['95%'], []);
 
   const handleBookingButton = useCallback(() => {
     bottomSheetRef.current?.expand();
   }, [bottomSheetRef]);
 
-  useEffect(() => {
-    bottomSheetRef.current?.collapse();
-  }, [bottomSheetRef]);
-
   return (
     <>
       <SafeAreaView style={styles.bookingContainer}>
-        <ScrollView>
+        <ScrollView style={{ flex: 1 }}>
           <ViewHeader title="Appointment" />
           <View style={styles.contentContainer}>
             <GradientText
@@ -163,14 +159,22 @@ function BookingView({ navigation }: any): JSX.Element {
         </ScrollView>
       </SafeAreaView>
       
-      {/* <BottomSheet
+      <BottomSheet
           ref={bottomSheetRef}
-          index={1}
+          index={-1}
           snapPoints={snapPoints}
           enablePanDownToClose
+          handleComponent={() => (
+            <TouchableOpacity
+              style={styles.menuHandle}
+              onPress={() => bottomSheetRef.current?.forceClose()}
+            >
+              <ArrowDown color="white" />
+            </TouchableOpacity>
+          )}
         >
-          <BookingDetailsView />
-        </BottomSheet> */}
+        <BookingDetailsView />
+      </BottomSheet>
     </>
   )
 }
@@ -418,6 +422,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 25,
   },
+  menuHandle: {
+    width: "100%",
+    backgroundColor: "#36237D",
+    height: 50,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    justifyContent: "center",
+    paddingLeft: 40,
+  }
 });
 
 export default BookingView;

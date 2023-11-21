@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useEffect } from "react";
+import React, { useRef, useMemo } from "react";
 import {
   SafeAreaView,
   Text,
@@ -8,12 +8,21 @@ import {
   ScrollView,
   TextInput,
 } from "react-native";
+import BottomSheet, { BottomSheetBackdrop, BottomSheetBackdropProps } from '@gorhom/bottom-sheet';
 import BackIcon from "../icons/Back";
 import SendIcon from "../icons/Send";
 import SideMenuIcon from "../icons/SideMenu";
 import VideoIcon from "../icons/Video";
+import DocumentsIcon from "../icons/Documents";
+import UploadIcon from "../icons/Upload";
+import GalleryIcon from "../icons/Gallery";
 
 function ChatRoomView({ navigation }: any): JSX.Element {
+  const bottomSheetRef = useRef<BottomSheet>(null);
+
+  const snapPoints = useMemo(() => ['50%'], []);
+  
+
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <ScrollView style={styles.container}>
@@ -43,7 +52,10 @@ function ChatRoomView({ navigation }: any): JSX.Element {
           value=""
         />
         <View style={styles.messageButtonsContainer}>
-          <TouchableOpacity style={styles.plusButton}>
+          <TouchableOpacity
+            style={styles.plusButton}
+            onPress={() => bottomSheetRef.current?.expand()}
+          >
             <Text style={styles.plusText}>+</Text>
           </TouchableOpacity>
 
@@ -54,6 +66,39 @@ function ChatRoomView({ navigation }: any): JSX.Element {
           </View>
         </View>
       </View>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={-1}
+        enablePanDownToClose
+        snapPoints={snapPoints}
+        backdropComponent={(props: BottomSheetBackdropProps) => (
+          <BottomSheetBackdrop
+            opacity={1}
+            style={styles.menuBackdrop}
+            {...props}
+          />
+        )}
+        handleComponent={() => (
+          <View style={styles.menuHandle} />
+        )}
+      >
+        <View style={styles.menuContainer}>
+          <Text style={styles.menuTitle}>Add</Text>
+          <TouchableOpacity style={styles.menuOption}>
+            <DocumentsIcon />
+            <Text style={styles.menuTopOptionLabel}>Your Documents</Text>
+          </TouchableOpacity>
+          <View style={styles.divider} />
+          <TouchableOpacity style={styles.menuOption}>
+            <UploadIcon />
+            <Text style={styles.menuTopOptionLabel}>Upload</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuOption}>
+            <GalleryIcon />
+            <Text style={styles.menuTopOptionLabel}>Gallery</Text>
+          </TouchableOpacity>
+        </View>
+      </BottomSheet>
     </SafeAreaView>
   );
 };
@@ -160,6 +205,45 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  menuBackdrop: {
+    backgroundColor: "#a8b5eb"
+  },
+  menuHandle: {
+    width: "100%",
+    height: 20,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    backgroundColor: "white",
+  },
+  menuContainer: {
+    flexDirection: "column",
+    paddingVertical: 17,
+  },
+  menuTitle: {
+    color: "black",
+    fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: 16,
+  },
+  menuOption: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 23,
+    marginLeft: 16,
+  },
+  menuTopOptionLabel: {
+    color: "black",
+    fontSize: 14,
+    fontWeight: "600",
+    marginLeft: 18,
+  },
+  divider: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "#E6E6E6",
+    marginTop: 33,
   },
 });
 

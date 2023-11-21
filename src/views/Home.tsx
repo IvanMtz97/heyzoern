@@ -30,7 +30,6 @@ function HomeView({ navigation }: any): JSX.Element {
             <ProfileButton onPress={() => navigation.navigate("Profile")} />
           </View>
           <View style={styles.searchContainer}>
-            <SearchInput />
           </View>
         </ImageBackground>
         <View style={styles.graphContainer}>
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   topContainer: {
-    height: 191,
+    height: 110,
     borderBottomWidth: 1,
     borderBottomColor: "rgba(220, 220, 220, 0.28)",
   },

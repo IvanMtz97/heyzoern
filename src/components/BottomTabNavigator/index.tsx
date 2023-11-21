@@ -3,9 +3,8 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
-  Image,
 } from "react-native";
-import CalendarFilledIcon from "../../icons/CalendarFilled";
+import CalendarIcon from "../../icons/Calendar";
 import ChatIcon from "../../icons/Chat";
 import CompassIcon from "../../icons/Compass";
 import DocumentsIcon from "../../icons/Documents";
@@ -15,12 +14,7 @@ function BottomTabNavigator(props: any): JSX.Element {
   function getIcon(routeName: string, activeIndex: number) {
     if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 5} />;
     if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
-    if (routeName === "Booking") {
-      if (activeIndex !== 2) {
-        return <Image source={require("../../assets/Calendar.png")} />;
-      }
-      return <CalendarFilledIcon />;
-    }
+    if (routeName === "Booking") return <CalendarIcon disabled={activeIndex !== 2} />;
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
   }

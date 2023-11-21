@@ -4,16 +4,19 @@ import {
   StyleSheet,
   Text,
   Image,
+  View,
 } from "react-native";
 import ChevronRightIcon from "../../icons/ChevronRight";
 
 function ConnectHealthApp(): JSX.Element {
   return (
     <TouchableOpacity style={styles.connectContainer}>
-      <Image
-        style={styles.healthAppImage}
-        source={require("../../assets/HealthApp.png")}
-      />
+      <View style={styles.healthAppImageContainer}>
+        <Image
+          style={styles.healthAppImage}
+          source={require("../../assets/HealthApp.png")}
+        />
+      </View>
       <Text style={styles.label}>Connect Health app for better insight</Text>
       <ChevronRightIcon />
     </TouchableOpacity>
@@ -31,6 +34,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 13,
     paddingRight: 20,
+  },
+  healthAppImageContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: 36,
+    height: 36,
+    borderWidth: 1,
+    borderColor: '#B2B2B2',
+    borderRadius: 7,
   },
   healthAppImage: {
     width: 36,

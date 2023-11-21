@@ -31,7 +31,7 @@ function ChatRoomView({ navigation }: any): JSX.Element {
           <TouchableOpacity style={styles.videoButton}>
             <VideoIcon />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.sideMenuButton}>
+          <TouchableOpacity onPress={() => navigation.navigate("ChatDetails")} style={styles.sideMenuButton}>
             <SideMenuIcon />
           </TouchableOpacity>
         </View>

@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   View,
-  TouchableOpacity,
 } from "react-native";
 import ChatRow, { ChatRowType } from "../components/Chat/ChatRow";
 import ViewHeader from "../components/ViewHeader";

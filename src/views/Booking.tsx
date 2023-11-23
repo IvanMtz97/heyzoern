@@ -67,7 +67,6 @@ function BookingView({ navigation }: any): JSX.Element {
                   </View>
                   <Text style={styles.indicatorLabel}>$100</Text>
                 </View>
-                <Text style={styles.confirmationLabel}>Can you still make your appointment for today?</Text>
 
                 <View style={styles.buttonsContainer}>
                   <TouchableOpacity style={styles.confirmationButton}>
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
   },
   purpleContainer: {
     width: "100%",
-    height: 285,
+    height: 255,
     borderRadius: 28,
     backgroundColor: "#36237D",
     paddingHorizontal: 25,
@@ -276,6 +275,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     lineHeight: 20,
     borderColor: "#624FA8",
+    backgroundColor: "rgba(98, 79, 168, 0.36);",
   },
   dateDay: {
     color: "white",

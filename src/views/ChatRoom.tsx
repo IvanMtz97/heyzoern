@@ -71,13 +71,15 @@ function ChatRoomView({ navigation }: any): JSX.Element {
         snapPoints={snapPoints}
         backdropComponent={(props: BottomSheetBackdropProps) => (
           <BottomSheetBackdrop
-            opacity={1}
+            disappearsOnIndex={-1}
             style={styles.menuBackdrop}
             {...props}
           />
         )}
         handleComponent={() => (
-          <View style={styles.menuHandle} />
+          <View style={styles.menuHandle}>
+            <View style={styles.menuHandleIcon} />
+          </View>
         )}
       >
         <View style={styles.menuContainer}>
@@ -205,18 +207,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   menuBackdrop: {
-    backgroundColor: "#a8b5eb"
+    backgroundColor: "red"
   },
   menuHandle: {
     width: "100%",
     height: 20,
-    borderTopRightRadius: 15,
-    borderTopLeftRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    borderTopRightRadius: 28,
+    borderTopLeftRadius: 28,
     backgroundColor: "white",
+  },
+  menuHandleIcon: {
+    width: 56,
+    height: 4,
+    borderRadius: 100,
+    backgroundColor: "#ECECEC",
   },
   menuContainer: {
     flexDirection: "column",
-    paddingVertical: 17,
+    paddingVertical: 10,
   },
   menuTitle: {
     color: "black",

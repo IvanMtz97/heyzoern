@@ -12,7 +12,8 @@ import DocumentsIcon from "../../icons/Documents";
 import HomeIcon from "../../icons/Home";
 
 function BottomTabNavigator(props: any): JSX.Element {
-  const routeName = getFocusedRouteNameFromRoute(props.state.routes[props.state.index]);
+  const Route = props.state.routes[props.state.index]
+  const routeName = getFocusedRouteNameFromRoute(Route);
   function getIcon(routeName: string, activeIndex: number) {
     if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 5} />;
     if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
@@ -21,7 +22,7 @@ function BottomTabNavigator(props: any): JSX.Element {
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
   }
 
-  if (routeName === "ChatRoom" || routeName === "ChatDetails") return <></>;
+  if (routeName === "ChatRoom" || routeName === "ChatDetails" || Route.name === "Profile") return <></>;
 
   return (
     <View style={styles.container}>

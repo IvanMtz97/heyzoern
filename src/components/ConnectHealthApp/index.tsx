@@ -14,7 +14,7 @@ function ConnectHealthApp(): JSX.Element {
       <View style={styles.healthAppImageContainer}>
         <Image
           style={styles.healthAppImage}
-          source={require("../../assets/HealthApp.png")}
+          source={require("../../assets/healthAppHeart.png")}
         />
       </View>
       <Text style={styles.label}>Connect Health app for better insight</Text>
@@ -36,17 +36,19 @@ const styles = StyleSheet.create({
     paddingRight: 20,
   },
   healthAppImageContainer: {
-    justifyContent: "center",
-    alignItems: "center",
     width: 36,
     height: 36,
     borderWidth: 1,
     borderColor: '#B2B2B2',
     borderRadius: 7,
+    position: "relative",
   },
   healthAppImage: {
-    width: 36,
-    height: 36,
+    width: 20,
+    height: 15,
+    position: "relative",
+    left: 11,
+    bottom: -4,
   },
   label: {
     color: "black",

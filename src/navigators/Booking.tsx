@@ -9,7 +9,7 @@ function BookingNavigator(): JSX.Element {
     <Stack.Navigator screenOptions={{
       headerShown: false,
     }}>
-      <Stack.Screen name="Booking" component={BookingView} />
+      <Stack.Screen name="BookingList" component={BookingView} />
     </Stack.Navigator>
   );
 }

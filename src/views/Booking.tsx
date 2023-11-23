@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useEffect } from "react";
+import React, { useRef, useMemo, useCallback } from "react";
 import {
   SafeAreaView,
   Text,
@@ -8,7 +8,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import BottomSheet from '@gorhom/bottom-sheet';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
 
 import GradientText from "../components/GradientText";
 import ViewHeader from "../components/ViewHeader";
@@ -25,11 +25,11 @@ import VideoCallIcon from "../icons/VideoCall";
 import ArrowDown from "../icons/ArrowDown";
 
 function BookingView({ navigation }: any): JSX.Element {
-  const bottomSheetRef = useRef<BottomSheet>(null);
+  const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['95%'], []);
 
   const handleBookingButton = useCallback(() => {
-    bottomSheetRef.current?.expand();
+    bottomSheetRef.current?.present();
   }, [bottomSheetRef]);
 
   return (
@@ -159,11 +159,12 @@ function BookingView({ navigation }: any): JSX.Element {
         </ScrollView>
       </SafeAreaView>
       
-      <BottomSheet
+      <BottomSheetModal
           ref={bottomSheetRef}
-          index={-1}
+          index={0}
           snapPoints={snapPoints}
           enablePanDownToClose
+          topInset={2}
           handleComponent={() => (
             <TouchableOpacity
               style={styles.menuHandle}
@@ -174,7 +175,7 @@ function BookingView({ navigation }: any): JSX.Element {
           )}
         >
         <BookingDetailsView />
-      </BottomSheet>
+      </BottomSheetModal>
     </>
   )
 }

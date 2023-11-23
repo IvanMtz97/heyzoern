@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
 } from "react-native";
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import CalendarIcon from "../../icons/Calendar";
 import ChatIcon from "../../icons/Chat";
 import CompassIcon from "../../icons/Compass";
@@ -11,6 +12,7 @@ import DocumentsIcon from "../../icons/Documents";
 import HomeIcon from "../../icons/Home";
 
 function BottomTabNavigator(props: any): JSX.Element {
+  const routeName = getFocusedRouteNameFromRoute(props.state.routes[props.state.index]);
   function getIcon(routeName: string, activeIndex: number) {
     if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 5} />;
     if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
@@ -18,6 +20,8 @@ function BottomTabNavigator(props: any): JSX.Element {
     if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
   }
+
+  if (routeName === "ChatRoom" || routeName === "ChatDetails") return <></>;
 
   return (
     <View style={styles.container}>

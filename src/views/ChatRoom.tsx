@@ -19,9 +19,7 @@ import GalleryIcon from "../icons/Gallery";
 
 function ChatRoomView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
-
   const snapPoints = useMemo(() => ['50%'], []);
-  
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>

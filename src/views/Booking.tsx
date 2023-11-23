@@ -164,7 +164,7 @@ function BookingView({ navigation }: any): JSX.Element {
           index={0}
           snapPoints={snapPoints}
           enablePanDownToClose
-          topInset={2}
+          topInset={0}
           handleComponent={() => (
             <TouchableOpacity
               style={styles.menuHandle}

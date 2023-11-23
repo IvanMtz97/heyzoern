@@ -5,7 +5,6 @@ import ChatRoomView from "../views/ChatRoom";
 import ChatDetails from "../views/ChatDetails";
 
 const Stack = createStackNavigator();
-
 function ChatNavigator(): JSX.Element {
   return (
     <Stack.Navigator screenOptions={{

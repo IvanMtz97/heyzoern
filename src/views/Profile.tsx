@@ -24,7 +24,7 @@ import ArrowLeft from "../icons/ArrowLeft";
 
 function ProfileView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['20%', '60%', '90%'], []);
+  const snapPoints = useMemo(() => ['10%', '60%', '90%'], []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>

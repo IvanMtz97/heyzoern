@@ -158,10 +158,10 @@ function BookingDetailsView(): JSX.Element {
 const styles = StyleSheet.create({
   bookingDetailsContainer: {
     backgroundColor: "#36237D",
-    paddingVertical: 40,
     paddingHorizontal: 20,
   },
   bookingDetailsLabelsContainer: {
+    marginTop: 10,
     paddingHorizontal: 30,
   },
   appointmentDurationLabel: {
@@ -179,6 +179,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginBottom: 6,
+    marginLeft: 5,
   },
   indicatorIconContainer: {
     width: 30,

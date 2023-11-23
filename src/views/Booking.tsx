@@ -170,7 +170,7 @@ function BookingView({ navigation }: any): JSX.Element {
               style={styles.menuHandle}
               onPress={() => bottomSheetRef.current?.forceClose()}
             >
-              <ArrowDown color="white" />
+              <ArrowDown size="32" color="white" />
             </TouchableOpacity>
           )}
         >
@@ -427,9 +427,10 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "#36237D",
     height: 50,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
     justifyContent: "center",
+    paddingTop: 20,
     paddingLeft: 40,
   }
 });

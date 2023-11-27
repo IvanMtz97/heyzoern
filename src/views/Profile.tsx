@@ -10,6 +10,7 @@ import {
   Image,
 } from "react-native";
 import { Switch } from 'react-native-switch';
+import CheckBox from '@react-native-community/checkbox';
 import { BlurView } from "@react-native-community/blur";
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
@@ -21,83 +22,84 @@ import PhoneIcon from "../icons/Phone";
 import SmsNotificationIcon from "../icons/SmsNotification";
 import UserIcon from "../icons/User";
 import ArrowLeft from "../icons/ArrowLeft";
+import ArrowRight from "../icons/ArrowRight";
 
 function ProfileView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['10%', '60%', '90%'], []);
+  const snapPoints = useMemo(() => ['75%'], []);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <LinearGradient
+        style={styles.fullGradientContainer}
+        colors={[
+          "#D6E7FC",
+          "#FFEEDC",
+          "#FFEEDC",
+          "#FFEEDC",
+        ]}
+      >
+
       <TouchableOpacity
         style={styles.backButtonContainer}
         onPress={() => navigation.goBack()}
       >
         <ArrowLeft size="20" />
       </TouchableOpacity>
-      <Text style={styles.headerLabel}>Profile</Text>
         <View style={styles.gradientContainer}>
-          <LinearGradient
-            start={{x: 0.0, y: 0.25}}
-            end={{x: 0.5, y: 1.0}}
-            style={styles.gradientCardContainer}
-            colors={[
-              "#FE9E8C",
-              "#F86B93",
-              "#F44298",
-            ]}
-          >
-            <View style={styles.gradientCardHeader}>
-              <Image
-                source={require("../assets/zoelogo.png")}
-              />
-              <View>
-                <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
-                <Text style={styles.gradientCardName}>Matthew Doyle</Text>
-              </View>
-            </View>
-
-            <View style={styles.gradientCardQrContainer}>
-              <View style={styles.gradientCardQrBox}>
+          <View style={styles.gradientViewContainer}>
+            <LinearGradient
+              start={{x: 0.0, y: 0.25}}
+              end={{x: 0.5, y: 1.0}}
+              style={styles.gradientCardContainer}
+              colors={[
+                "#FE9E8C",
+                "#F86B93",
+                "#F44298",
+              ]}
+            >
+              <View style={styles.gradientCardHeader}>
                 <Image
-                  style={styles.gradientCardQrImage}
-                  source={require("../assets/exampleQr.png")}
+                  source={require("../assets/zoelogo.png")}
                 />
+                <View>
+                  <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
+                  <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+                </View>
               </View>
-            </View>
-          </LinearGradient>
-        </View>
 
-        <View style={styles.holdQrContainer}>
-          <View style={styles.holdQrCircle}>
-            <Image source={require("../assets/holdQr.png")} />
+              <View style={styles.gradientCardQrContainer}>
+                <View style={styles.gradientCardQrBox}>
+                  <Image
+                    style={styles.gradientCardQrImage}
+                    source={require("../assets/exampleQr.png")}
+                  />
+                </View>
+              </View>
+            </LinearGradient>
           </View>
-          <Text style={styles.holdQrLabel}>Hold Near for scan</Text>
         </View>
         
         <BottomSheet
           ref={bottomSheetRef}
-          index={1}
+          index={0}
           style={styles.bottomSheetContainer}
           handleComponent={() => (
             <View
               style={styles.bottomSheetHandle}
               />
           )}
-          backgroundStyle={{
-            backgroundColor: "transparent",
-          }}
-          backgroundComponent={(props) => (
-            <BlurView
-              style={styles.scrollContainer}
-              blurRadius={10}
-              blurType="light"
-              {...props}
-              />
-          )}
           snapPoints={snapPoints}
           topInset={0}
         >
           <BottomSheetScrollView style={styles.scrollContainer}>
+            <View style={styles.firstSection} />
+            <TouchableOpacity style={styles.addToAppleWalletButton}>
+              <Image
+                source={require("../assets/wallet.png")}
+              />
+              <Text style={styles.addToAppleWalletButtonText}>Add to Apple Wallet</Text>
+            </TouchableOpacity>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionLabel}>Name</Text>
 
@@ -147,6 +149,70 @@ function ProfileView({ navigation }: any): JSX.Element {
                 />
               </View>
             </View>
+
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionLabel}>Gender</Text>
+
+              <View style={styles.checkboxesContainer}>
+                <View style={styles.checkboxContainer}>
+                  <CheckBox
+                    style={styles.checkbox}
+                    boxType="circle"
+                    tintColor="#6243E9"
+                    onCheckColor="#6243E9"
+                    onFillColor="#6243E9"
+                    onTintColor="#6243E9"
+                    disabled={false}
+                    value={true}
+                  />
+                  <Text style={styles.checkboxText}>Male</Text>
+                </View>
+                <View style={styles.checkboxContainer}>
+                  <CheckBox
+                    style={styles.checkbox}
+                    boxType="circle"
+                    tintColor="#6243E9"
+                    onCheckColor="#6243E9"
+                    onFillColor="#6243E9"
+                    onTintColor="#6243E9"
+                    disabled={false}
+                    value={false}
+                  />
+                  <Text style={styles.checkboxText}>Female</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.sectionContainer}>
+              <View style={styles.paymentMethodHeader}>
+                <Text style={styles.sectionLabel}>Payment methoder</Text>
+                <TouchableOpacity style={styles.paymentMethodHeaderButton}>
+                  <Text style={styles.paymentMethodHeaderButtonIcon}>+</Text>
+                  <Text style={styles.paymentMethodHeaderButtonText}>Add</Text>
+                </TouchableOpacity>
+              </View>
+
+              <TouchableOpacity style={styles.paymentMethodItem}>
+                <View style={styles.amexContainer}>
+                  <Image
+                    source={require("../assets/amex.png")}
+                  />
+                </View>
+                <Text style={styles.amexLabel}>American Express</Text>
+                <ArrowRight style={styles.paymentItemArrow} color="black" />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.paymentMethodItem}>
+                <View style={styles.applePayContainer}>
+                  <Image
+                    source={require("../assets/applePay.png")}
+                  />
+                </View>
+                <Text style={styles.amexLabel}>Apple Pay</Text>
+                <ArrowRight style={styles.paymentItemArrow} color="black" />
+              </TouchableOpacity>
+            </View>
+
             <View style={styles.notificationsContainer}>
               <Text style={styles.containerTitle}>Notifications</Text>
               <View style={styles.notificationDetailsContainer}>
@@ -161,13 +227,18 @@ function ProfileView({ navigation }: any): JSX.Element {
                     activeText=""
                     backgroundActive="#5837E8"
                     backgroundInactive="#F1F1F1"
-                    circleBorderWidth={1}
+                    circleBorderWidth={2}
+                    circleBorderActiveColor="#5837E8"
                     circleBorderInactiveColor="#bebebe"
                   />
                 </View>
                 <View style={styles.notificationDetailRow}>
                   <View style={styles.notificationDetailContainer}>
-                    <SmsNotificationIcon />
+                    <View style={styles.smsIconContainer}>
+                      <Image
+                        source={require("../assets/sms.png")}
+                      />
+                    </View>
                     <Text style={styles.notificationDetailLabel}>SMS notification</Text>
                   </View>
 
@@ -176,14 +247,15 @@ function ProfileView({ navigation }: any): JSX.Element {
                     inActiveText=""
                     backgroundActive="#5837E8"
                     backgroundInactive="#F1F1F1"
-                    circleBorderWidth={1}
-                    circleBorderInactiveColor="#bebebe"
+                    circleBorderWidth={2}
+                    circleBorderInactiveColor="#F1F1F1"
                   />
                 </View>
               </View>
             </View>
           </BottomSheetScrollView>
         </BottomSheet>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
@@ -246,12 +318,25 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     paddingHorizontal: 20,
   },
+  fullGradientContainer: {
+    flex: 1,
+  },
   gradientContainer: {
     width: "100%",
     paddingHorizontal: 20,
+    marginTop: 40,
+    position: 'relative',
+    zIndex: 2,
+  },
+  gradientViewContainer: {
+    overflow: "hidden",
+    width: "100%",
+    height: 238,
+    borderRadius: 28,
+    elevation: 20,
+    marginTop: 10,
   },
   gradientCardContainer: {
-    marginTop: 10,
     width: "100%",
     height: 238,
     borderRadius: 28,
@@ -316,6 +401,102 @@ const styles = StyleSheet.create({
   inputsRowContainer: {
     width: "100%",
     flexDirection: "row",
+  },
+  checkboxesContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#EEE",
+    height: 45,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  checkbox: {
+  },
+  checkboxText: {
+    marginLeft: 12,
+    color: "black",
+    fontSize: 12,
+    fontWeight: "500",
+  },
+  paymentMethodHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 15,
+  },
+  paymentMethodHeaderButton: {
+    width: 85,
+    height: 31,
+    borderRadius: 7,
+    backgroundColor: "#000",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  paymentMethodHeaderButtonIcon: {
+    fontSize: 20,
+    color: "#fff",
+    fontWeight: "500",
+  },
+  paymentMethodHeaderButtonText: {
+    fontSize: 14,
+    color: "#fff",
+    fontWeight: "600",
+    marginLeft: 14,
+  },
+  paymentMethodItem: {
+    flexDirection: "row",
+    width: "100%",
+    height: 50,
+    borderBottomWidth: 1,
+    borderColor: "#E6E6E6",
+    alignItems: "center",
+  },
+  amexContainer: {
+    height: 16,
+    alignItems: "flex-end",
+    borderLeftWidth: 10,
+    borderLeftColor: "#006FCF",
+  },
+  applePayContainer: {
+    width: 25,
+    height: 16,
+  },
+  amexLabel: {
+    color: "#000",
+    fontSize: 14,
+    fontWeight: "500",
+    marginLeft: 12,
+  },
+  paymentItemArrow: {
+    marginLeft: "auto",
+  },
+  firstSection: {
+    marginTop: 140,
+  },
+  addToAppleWalletButton: {
+    width: "100%",
+    height: 45,
+    backgroundColor: "#050707",
+    borderRadius: 5,
+    marginBottom: 26,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  addToAppleWalletButtonText: {
+    color: "#FFF",
+    fontSize: 12,
+    fontWeight: "600",
+    marginLeft: 6,
   },
   input: {
     flex: 1,
@@ -442,10 +623,6 @@ const styles = StyleSheet.create({
   notificationsContainer: {
     width: "100%",
     height: 172,
-    borderRadius: 28,
-    paddingHorizontal: 27,
-    paddingVertical: 21,
-    backgroundColor: "#FAF9F8",
     marginTop: 33,
     marginBottom: 30,
   },
@@ -453,13 +630,13 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   notificationDetailRow: {
-    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     height: 60,
     borderBottomWidth: 1,
     borderColor: "#E6E6E6",
+    paddingRight: 5,
   },
   notificationDetailContainer: {
     height: "100%",
@@ -486,6 +663,15 @@ const styles = StyleSheet.create({
     color: "#6243E9",
     fontSize: 12,
     fontWeight: "600",
+  },
+  smsIconContainer: {
+    width: 24,
+    height: 24,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "black",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

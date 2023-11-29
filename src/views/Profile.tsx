@@ -23,10 +23,11 @@ import SmsNotificationIcon from "../icons/SmsNotification";
 import UserIcon from "../icons/User";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
+import ZoeLogoIcon from "../icons/ZoeLogo";
 
 function ProfileView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['75%'], []);
+  const snapPoints = useMemo(() => ['70%'], []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -59,9 +60,7 @@ function ProfileView({ navigation }: any): JSX.Element {
               ]}
             >
               <View style={styles.gradientCardHeader}>
-                <Image
-                  source={require("../assets/zoelogo.png")}
-                />
+                <ZoeLogoIcon />
                 <View>
                   <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
                   <Text style={styles.gradientCardName}>Matthew Doyle</Text>
@@ -72,9 +71,10 @@ function ProfileView({ navigation }: any): JSX.Element {
                 <View style={styles.gradientCardQrBox}>
                   <Image
                     style={styles.gradientCardQrImage}
-                    source={require("../assets/exampleQr.png")}
+                    source={require("../assets/qr.png")}
                   />
                 </View>
+                <Text style={styles.qrNumber}>ID 273937783</Text>
               </View>
             </LinearGradient>
           </View>
@@ -320,6 +320,7 @@ const styles = StyleSheet.create({
   },
   fullGradientContainer: {
     flex: 1,
+    paddingTop: 20,
   },
   gradientContainer: {
     width: "100%",
@@ -373,8 +374,14 @@ const styles = StyleSheet.create({
     overflow: "hidden"
   },
   gradientCardQrImage: {
-    width: 87,
-    height: 87,
+    width: 107,
+    height: 107,
+  },
+  qrNumber: {
+    color: "#601D3C",
+    fontSize: 12,
+    fontWeight: "normal",
+    marginTop: 15,
   },
   blurView: {
     position: "absolute",

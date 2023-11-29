@@ -21,6 +21,7 @@ import HomePinIcon from "../icons/HomePin";
 import CreditCardIcon from "../icons/CreditCard";
 import ZoePayIcon from "../icons/ZoePay";
 import CalendarAddIcon from "../icons/CalendarAdd";
+import AppleWallet from "../icons/AppleWallet";
 
 function BookingDetailsView(): JSX.Element {
   return (
@@ -144,12 +145,7 @@ function BookingDetailsView(): JSX.Element {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.appleWalletButton}>
-          <Image
-            style={styles.appleWalletImage}
-            source={require("../assets/applewalletoutlined.png")}
-          />
-        </TouchableOpacity>
+        <AppleWallet />
       </View>
     </BottomSheetScrollView>
   )

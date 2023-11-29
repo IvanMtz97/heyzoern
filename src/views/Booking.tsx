@@ -24,6 +24,7 @@ import WalletIcon from "../icons/Wallet";
 import VideoCallIcon from "../icons/VideoCall";
 import ArrowDown from "../icons/ArrowDown";
 import VerifiedIcon from "../icons/Verified";
+import AppleWallet from "../icons/AppleWallet";
 
 function BookingView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -123,10 +124,7 @@ function BookingView({ navigation }: any): JSX.Element {
                 </View>
 
                 <TouchableOpacity style={styles.appleWalletButton}>
-                  <Image
-                    style={styles.appleWalletImage}
-                    source={require("../assets/applewallet.png")}
-                  />
+                  <AppleWallet />
                 </TouchableOpacity>
               </View>
             </View>
@@ -158,7 +156,6 @@ function BookingView({ navigation }: any): JSX.Element {
           index={0}
           snapPoints={snapPoints}
           enablePanDownToClose
-          topInset={2}
           handleComponent={() => (
             <TouchableOpacity
               style={styles.menuHandle}
@@ -422,7 +419,7 @@ const styles = StyleSheet.create({
   menuHandle: {
     width: "100%",
     backgroundColor: "#36237D",
-    height: 50,
+    height: 63,
     borderTopLeftRadius: 28,
     borderTopRightRadius: 28,
     justifyContent: "center",

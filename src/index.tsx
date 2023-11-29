@@ -30,7 +30,8 @@ function Application(): JSX.Element {
       <BottomSheetModalProvider>
         <StatusBar
           barStyle="dark-content"
-          backgroundColor="transparent"
+          translucent
+          backgroundColor={"transparent"}
         />
         <Tab.Navigator
           tabBar={props => <BottomTabNavigator {...props} />}

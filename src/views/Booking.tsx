@@ -23,6 +23,7 @@ import BookingDetailsView from "./BookinDetails";
 import WalletIcon from "../icons/Wallet";
 import VideoCallIcon from "../icons/VideoCall";
 import ArrowDown from "../icons/ArrowDown";
+import VerifiedIcon from "../icons/Verified";
 
 function BookingView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
@@ -70,7 +71,7 @@ function BookingView({ navigation }: any): JSX.Element {
 
                 <View style={styles.buttonsContainer}>
                   <TouchableOpacity style={styles.confirmationButton}>
-                    <ChatIcon disabled />
+                    <ChatIcon color="#D3C6F3" />
                   </TouchableOpacity>
                   <TouchableOpacity style={styles.confirmationButton}>
                     <TelephoneIcon />
@@ -109,10 +110,7 @@ function BookingView({ navigation }: any): JSX.Element {
                 <View style={styles.doctorLabelsContainer}>
                   <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
                   <Text style={styles.doctorName}>Dr. David Wood</Text>
-                  <Image
-                    style={styles.verifiedImage}
-                    source={require("../assets/verified.png")}
-                  />
+                  <VerifiedIcon />
                 </View>
               </View>
 
@@ -143,10 +141,7 @@ function BookingView({ navigation }: any): JSX.Element {
               <View style={styles.doctorLabelsContainer}>
                 <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
                 <Text style={styles.doctorName}>Dr. David Wood</Text>
-                <Image
-                  style={styles.verifiedImage}
-                  source={require("../assets/verified.png")}
-                />
+                <VerifiedIcon />
               </View>
 
               <View style={styles.appointmentDateContainer}>
@@ -163,7 +158,7 @@ function BookingView({ navigation }: any): JSX.Element {
           index={0}
           snapPoints={snapPoints}
           enablePanDownToClose
-          topInset={0}
+          topInset={2}
           handleComponent={() => (
             <TouchableOpacity
               style={styles.menuHandle}
@@ -329,13 +324,12 @@ const styles = StyleSheet.create({
   },
   doctorTitle: {
     color: "black",
-    fontSize: 11,
+    fontSize: 10,
   },
   doctorName: {
-    fontSize: 20,
+    fontSize: 18,
     color: "black",
     fontWeight: "600",
-    marginTop: 10,
   },
   verifiedImage: {
     width: 58,
@@ -388,7 +382,7 @@ const styles = StyleSheet.create({
   },
   appointmentContainer: {
     width: "100%",
-    height: 126,
+    height: 136,
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#E6E6E6",
@@ -407,8 +401,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#F3F3F3",
     position: "absolute",
-    right: 40,
-    top: 48,
+    right: 20,
+    top: 58,
+    overflow: "hidden",
   },
   appointmentDateMonth: {
     color: "black",
@@ -417,6 +412,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     lineHeight: 20,
     borderColor: "#F3F3F3",
+    backgroundColor: '#F6F6F6',
   },
   appointmentDateDay: {
     color: "black",

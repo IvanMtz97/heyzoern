@@ -49,7 +49,7 @@ function BookingDetailsView(): JSX.Element {
 
         <View style={styles.buttonsContainer}>
           <TouchableOpacity style={styles.confirmationButton}>
-            <ChatIcon disabled />
+            <ChatIcon color="#D3C6F3" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.confirmationButton}>
             <TelephoneIcon />
@@ -372,7 +372,6 @@ const styles = StyleSheet.create({
   },
   doctorTitle: {
     color: "white",
-    fontSize: 11,
   },
   doctorName: {
     fontSize: 20,

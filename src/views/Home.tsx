@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import ProfileButton from "../components/ProfileButton";
 import GradientText from "../components/GradientText";
-import SearchInput from "../components/SearchInput";
 import ChronologicalAgeGraph from "../components/ChronologicalAgeGraph";
 import ConnectHealthApp from "../components/ConnectHealthApp";
 import OptimizedBiomarkers from "../components/OptimizedBiomarkers";
@@ -19,27 +18,25 @@ function HomeView({ navigation }: any): JSX.Element {
   return (
     <SafeAreaView>
       <ScrollView style={styles.viewContainer}>
-        <ImageBackground
-          style={styles.topContainer}
-          source={require("../assets/searchBackground.png")}
-        >
-          <View
-            style={styles.welcomeContainer}
+        <View style={styles.contentContainer}>
+          <ImageBackground
+            style={styles.topContainer}
+            source={require("../assets/searchBackground.png")}
           >
-            <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
-            <ProfileButton onPress={() => navigation.navigate("Profile")} />
+            <View
+              style={styles.welcomeContainer}
+            >
+              <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
+              <ProfileButton onPress={() => navigation.navigate("Profile")} />
+            </View>
+          </ImageBackground>
+          <View style={styles.graphContainer}>
+            <ChronologicalAgeGraph />
+            <ConnectHealthApp />
+            <OptimizedBiomarkers />
+            <PendingBiomarkers />
           </View>
-          <View style={styles.searchContainer}>
-          </View>
-        </ImageBackground>
-        <View style={styles.graphContainer}>
-          <ChronologicalAgeGraph />
         </View>
-        <View style={styles.connectContainer}>
-          <ConnectHealthApp />
-        </View>
-        <OptimizedBiomarkers />
-        <PendingBiomarkers />
       </ScrollView>
     </SafeAreaView>
   )
@@ -48,36 +45,38 @@ function HomeView({ navigation }: any): JSX.Element {
 const styles = StyleSheet.create({
   viewContainer: {
     backgroundColor: "#faf9f7",
-    height: "100%",
+    position: "relative",
+  },
+  contentContainer: {
+    position: "relative",
+    height: 1140,
   },
   topContainer: {
-    height: 110,
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(220, 220, 220, 0.28)",
+    width: "100%",
+    height: 140,
+    position: "absolute",
   },
   welcomeContainer: {
-    marginTop: 30,
+    marginTop: 40,
     paddingHorizontal: 16,
     flexDirection: "row",
     justifyContent: "space-between",
   },
   welcomeTitle: {
-    color: "#6243e9", // #392685
+    color: "#6243e9",
     fontSize: 28,
     fontWeight: "bold",
   },
-  searchContainer: {
-    marginTop: 22,
-    paddingHorizontal: 16,
-  },
   graphContainer: {
-    height: 355,
     paddingHorizontal: 16,
-    marginTop: 30,
-  },
-  connectContainer: {
-    paddingHorizontal: 16,
-    marginTop: 22,
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    backgroundColor: '#FAF9F8',
+    paddingTop: 36,
+    elevation: 10,
+    position: "absolute",
+    zIndex: 2,
+    top: 115,
   },
 });
 

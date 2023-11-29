@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 13,
     paddingRight: 20,
+    marginTop: 22,
   },
   healthAppImageContainer: {
     width: 36,

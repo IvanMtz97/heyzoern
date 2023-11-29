@@ -13,8 +13,10 @@ import Document from "../components/Document";
 import CalendarNote from "../icons/CalendarNote";
 import CheckIcon from "../icons/Check";
 import ClockIcon from "../icons/Clock";
+import CloseIcon from "../icons/Close";
 import HomeLocationIcon from "../icons/HomeLocation";
 import RightIcon from "../icons/Right";
+import VerifiedIcon from "../icons/Verified";
 import VideoCallIcon from "../icons/VideoCall";
 import WalletIcon from "../icons/Wallet";
 
@@ -29,8 +31,11 @@ function ChatDetails({ navigation }): JSX.Element {
       <ScrollView style={{ flex: 1 }}>
         <View style={styles.headerContainer}>
           <Text style={styles.headerLabel}>Details</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.closeButtonText}>x</Text>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.closeButtonContainer}
+          >
+            <CloseIcon />
           </TouchableOpacity>
         </View>
 
@@ -68,10 +73,7 @@ function ChatDetails({ navigation }): JSX.Element {
               <View style={styles.doctorLabelsContainer}>
                 <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
                 <Text style={styles.doctorName}>Dr. David Wood</Text>
-                <Image
-                  style={styles.verifiedImage}
-                  source={require("../assets/verified.png")}
-                />
+                <VerifiedIcon />
               </View>
           </View>
         </View>
@@ -189,6 +191,14 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
   },
+  closeButtonContainer: {
+    width: 31,
+    height: 31,
+    borderRadius: 31,
+    backgroundColor: "#F5F5F5",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   closeButtonText: {
     fontSize: 20,
     fontWeight: "500",
@@ -263,13 +273,12 @@ const styles = StyleSheet.create({
   },
   doctorTitle: {
     color: "black",
-    fontSize: 11,
+    fontSize: 10,
   },
   doctorName: {
     fontSize: 20,
     color: "black",
     fontWeight: "600",
-    marginTop: 10,
   },
   verifiedImage: {
     width: 58,
@@ -393,6 +402,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#E4E4E4",
     borderRadius: 12,
+    overflow: "hidden",
   },
   dateTopContainer: {
     width: "100%",
@@ -400,6 +410,7 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E4E4E4",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#F6F6F6"
   },
   dateMonth: {
     color: "black",

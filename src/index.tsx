@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { StatusBar } from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuth } from '@frontegg/react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
@@ -27,6 +28,10 @@ function Application(): JSX.Element {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
+        <StatusBar
+          barStyle="dark-content"
+          backgroundColor="transparent"
+        />
         <Tab.Navigator
           tabBar={props => <BottomTabNavigator {...props} />}
           screenOptions={{

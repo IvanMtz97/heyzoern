@@ -9,8 +9,8 @@ const SideMenuIcon = (props: any) => (
     fill="none"
     {...props}
   >
-    <Rect x="18" y="14" width="17" height="12.6154" rx="1" transform="rotate(-180 18 14)" stroke="black" stroke-width="2"/>
-    <Line x1="12" y1="14.6923" x2="12" y2="0.692261" stroke="black" stroke-width="2"/>
+    <Rect x="18" y="14" width="17" height="12.6154" rx="1" transform="rotate(-180 18 14)" stroke="black" strokeWidth="2"/>
+    <Line x1="12" y1="14.6923" x2="12" y2="0.692261" stroke="black" strokeWidth="2"/>
   </Svg>
 )
 export default SideMenuIcon;

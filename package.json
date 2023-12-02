@@ -29,7 +29,8 @@
     "react-native-screens": "^3.27.0",
     "react-native-svg": "^13.14.0",
     "react-native-switch": "^1.5.1",
-    "yarn": "^1.22.19"
+    "react-native-system-navigation-bar": "^2.6.3",
+    "yarn": "^1.22.21"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

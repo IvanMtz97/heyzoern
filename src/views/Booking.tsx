@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback } from "react";
+import React, { useRef, useMemo, useCallback, useEffect } from "react";
 import {
   SafeAreaView,
   Text,
@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import GradientText from "../components/GradientText";
 import ViewHeader from "../components/ViewHeader";
@@ -32,6 +33,7 @@ function BookingView({ navigation }: any): JSX.Element {
 
   const handleBookingButton = useCallback(() => {
     bottomSheetRef.current?.present();
+    SystemNavigationBar.setNavigationColor('#36237D');
   }, [bottomSheetRef]);
 
   return (
@@ -159,7 +161,10 @@ function BookingView({ navigation }: any): JSX.Element {
           handleComponent={() => (
             <TouchableOpacity
               style={styles.menuHandle}
-              onPress={() => bottomSheetRef.current?.forceClose()}
+              onPress={() => {
+                bottomSheetRef.current?.forceClose();
+                SystemNavigationBar.setNavigationColor('white');
+              }}
             >
               <ArrowDown size="32" color="white" />
             </TouchableOpacity>

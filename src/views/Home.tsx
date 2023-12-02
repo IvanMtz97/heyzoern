@@ -32,7 +32,7 @@ function HomeView({ navigation }: any): JSX.Element {
           </ImageBackground>
           <View style={styles.graphContainer}>
             <ChronologicalAgeGraph />
-            <ConnectHealthApp />
+            <ConnectHealthApp onPress={() => navigation.navigate("BiomarkersForm")} />
             <OptimizedBiomarkers />
             <PendingBiomarkers />
           </View>

@@ -13,6 +13,7 @@ import BottomTabNavigator from './components/BottomTabNavigator';
 import ProfileView from './views/Profile';
 import UnauthorizedView from './views/Unauthorized';
 import BookingNavigator from './navigators/Booking';
+import HomeNavigator from './navigators/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,7 +40,7 @@ function Application(): JSX.Element {
             headerShown: false,
           }}
         >
-          <Tab.Screen name="Home" component={HomeView} />
+          <Tab.Screen name="Home" component={HomeNavigator} />
           <Tab.Screen name="Discover" component={DiscoverView} />
           <Tab.Screen name="Booking" component={BookingNavigator} />
           <Tab.Screen name="Chat" component={ChatNavigator} />

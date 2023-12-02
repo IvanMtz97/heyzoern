@@ -5,7 +5,6 @@ import {
   Text,
   Image,
 } from "react-native";
-import Svg, { Path } from "react-native-svg";
 
 const AppleWallet = (props: any) => (
   <View style={styles.container}>

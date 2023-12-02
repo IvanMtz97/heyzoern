@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -10,7 +10,6 @@ import {
   Image,
 } from "react-native";
 import { Switch } from 'react-native-switch';
-import CheckBox from '@react-native-community/checkbox';
 import { BlurView } from "@react-native-community/blur";
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
@@ -24,8 +23,15 @@ import UserIcon from "../icons/User";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
 import ZoeLogoIcon from "../icons/ZoeLogo";
+import GradientText from "../components/GradientText";
+import Stepper from "../components/Stepper";
+import StackedCards from "../components/StackedCards";
+import ApplePayIcon from "../icons/ApplePay";
+import SmsText from "../icons/Sms";
+import CheckBox from '../components/Checkbox';
 
 function ProfileView({ navigation }: any): JSX.Element {
+  const [gender, setGender] = useState("M");
   const bottomSheetRef = useRef<BottomSheet>(null);
   const snapPoints = useMemo(() => ['70%'], []);
 
@@ -100,6 +106,15 @@ function ProfileView({ navigation }: any): JSX.Element {
               />
               <Text style={styles.addToAppleWalletButtonText}>Add to Apple Wallet</Text>
             </TouchableOpacity>
+            <GradientText
+              colors={["#6243E9", "#36237D"]}
+              style={styles.stepperTitle}
+            >
+              Earn in 2 more visits
+            </GradientText>
+            <Stepper style={styles.stepper} steps={5} progress={40} />
+            <StackedCards style={styles.stackedCards} />
+            <Text style={styles.profileTitle}>Profile</Text>
             <View style={styles.sectionContainer}>
               <Text style={styles.sectionLabel}>Name</Text>
 
@@ -156,27 +171,15 @@ function ProfileView({ navigation }: any): JSX.Element {
               <View style={styles.checkboxesContainer}>
                 <View style={styles.checkboxContainer}>
                   <CheckBox
-                    style={styles.checkbox}
-                    boxType="circle"
-                    tintColor="#6243E9"
-                    onCheckColor="#6243E9"
-                    onFillColor="#6243E9"
-                    onTintColor="#6243E9"
-                    disabled={false}
-                    value={true}
+                    active={gender === "M"}
+                    onPress={() => setGender("M")}
                   />
                   <Text style={styles.checkboxText}>Male</Text>
                 </View>
-                <View style={styles.checkboxContainer}>
+                <View style={[styles.checkboxContainer, { borderLeftWidth: 1, borderLeftColor: "#EEE" }]}>
                   <CheckBox
-                    style={styles.checkbox}
-                    boxType="circle"
-                    tintColor="#6243E9"
-                    onCheckColor="#6243E9"
-                    onFillColor="#6243E9"
-                    onTintColor="#6243E9"
-                    disabled={false}
-                    value={false}
+                    active={gender === "F"}
+                    onPress={() => setGender("F")}
                   />
                   <Text style={styles.checkboxText}>Female</Text>
                 </View>
@@ -204,11 +207,11 @@ function ProfileView({ navigation }: any): JSX.Element {
 
               <TouchableOpacity style={styles.paymentMethodItem}>
                 <View style={styles.applePayContainer}>
-                  <Image
-                    source={require("../assets/applePay.png")}
-                  />
+                  <ApplePayIcon />
                 </View>
-                <Text style={styles.amexLabel}>Apple Pay</Text>
+                <View>
+                  <Text style={styles.amexLabel}>Apple Pay</Text>
+                </View>
                 <ArrowRight style={styles.paymentItemArrow} color="black" />
               </TouchableOpacity>
             </View>
@@ -235,9 +238,7 @@ function ProfileView({ navigation }: any): JSX.Element {
                 <View style={styles.notificationDetailRow}>
                   <View style={styles.notificationDetailContainer}>
                     <View style={styles.smsIconContainer}>
-                      <Image
-                        source={require("../assets/sms.png")}
-                      />
+                      <SmsText />
                     </View>
                     <Text style={styles.notificationDetailLabel}>SMS notification</Text>
                   </View>
@@ -270,6 +271,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
     top: 20,
     left: 15,
+  },
+  stepperTitle: {
+    fontSize: 35,
+    fontWeight: "bold",
+    color: "#6243e9",
+    marginBottom: 18,
+  },
+  stepper: {
+    marginBottom: 37,
+  },
+  stackedCards: {
+    marginBottom: 130,
+    marginTop: 37,
+  },
+  profileTitle: {
+    color: "black",
+    fontSize: 20,
+    fontWeight: "600",
+    marginBottom: 26,
   },
   bottomSheetContainer: {
     backgroundColor: "transparent",
@@ -422,8 +442,9 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    paddingLeft: 17,
+    height: "100%",
   },
   checkbox: {
   },
@@ -476,6 +497,10 @@ const styles = StyleSheet.create({
   applePayContainer: {
     width: 25,
     height: 16,
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 3,
+    padding: 2,
   },
   amexLabel: {
     color: "#000",

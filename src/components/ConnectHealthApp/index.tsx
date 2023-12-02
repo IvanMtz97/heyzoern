@@ -8,9 +8,13 @@ import {
 } from "react-native";
 import ChevronRightIcon from "../../icons/ChevronRight";
 
-function ConnectHealthApp(): JSX.Element {
+type Props = {
+  onPress: () => void;
+}
+
+function ConnectHealthApp(props: Props): JSX.Element {
   return (
-    <TouchableOpacity style={styles.connectContainer}>
+    <TouchableOpacity onPress={props.onPress} style={styles.connectContainer}>
       <View style={styles.healthAppImageContainer}>
         <Image
           style={styles.healthAppImage}

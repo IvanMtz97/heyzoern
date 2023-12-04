@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  PixelRatio,
 } from "react-native";
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
@@ -25,19 +26,18 @@ import WalletIcon from "../icons/Wallet";
 import VideoCallIcon from "../icons/VideoCall";
 import VerifiedIcon from "../icons/Verified";
 import AppleWallet from "../icons/AppleWallet";
+import { toDp } from "../utils/sizes";
 
 function BookingView({ navigation }: any): JSX.Element {
   const bottomSheetRef = useRef<BottomSheetModal>(null);
-  const snapPoints = useMemo(() => ['95%'], []);
+  const snapPoints = useMemo(() => ['95%', '100%'], []);
 
   const handleBookingButton = useCallback(() => {
     bottomSheetRef.current?.present();
-    SystemNavigationBar.setNavigationColor('#36237D');
   }, [bottomSheetRef]);
 
   const handleDismissPress = useCallback(() => {
     bottomSheetRef.current?.forceClose();
-    SystemNavigationBar.setNavigationColor('white');
   }, [bottomSheetRef]);
 
   return (
@@ -163,6 +163,13 @@ function BookingView({ navigation }: any): JSX.Element {
           snapPoints={snapPoints}
           enablePanDownToClose
           handleComponent={null}
+          onChange={(status) => {
+            if (status === -1) {
+              SystemNavigationBar.setNavigationColor('white');
+            } else {
+              SystemNavigationBar.setNavigationColor('#36237D');
+            }
+          }}
           style={styles.bottomSheet}
         >
         <BookingDetailsView onDismiss={handleDismissPress} />
@@ -316,22 +323,24 @@ const styles = StyleSheet.create({
     borderColor: "#E6E6E6",
   },
   doctorImage: {
-    width: 75,
-    height: 75,
-    borderRadius: 15,
+    width: toDp(75),
+    height: toDp(75),
+    borderRadius: toDp(15),
   },
   doctorLabelsContainer: {
     flex: 1,
-    marginLeft: 26,
+    marginLeft: 15,
   },
   doctorTitle: {
     color: "black",
     fontSize: 10,
+    marginBottom: 8,
   },
   doctorName: {
     fontSize: 18,
     color: "black",
     fontWeight: "600",
+    marginBottom: 8,
   },
   verifiedImage: {
     width: 58,
@@ -384,7 +393,7 @@ const styles = StyleSheet.create({
   },
   appointmentContainer: {
     width: "100%",
-    height: 136,
+    height: toDp(126),
     backgroundColor: "white",
     borderWidth: 1,
     borderColor: "#E6E6E6",
@@ -393,14 +402,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 20,
+    paddingHorizontal: toDp(23),
     marginBottom: 10,
   },
   appointmentDateContainer: {
-    width: 59,
-    height: 63,
-    borderRadius: 12,
-    borderWidth: 2,
+    width: toDp(49),
+    height: toDp(53),
+    borderRadius: toDp(12),
+    borderWidth: toDp(1),
     borderColor: "#F3F3F3",
     position: "absolute",
     right: 20,

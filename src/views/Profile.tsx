@@ -1,25 +1,18 @@
-import React, { useRef, useMemo, useState } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import {
   SafeAreaView,
   Text,
   View,
-  ScrollView,
   StyleSheet,
   TouchableOpacity,
   TextInput,
   Image,
 } from "react-native";
 import { Switch } from 'react-native-switch';
-import { BlurView } from "@react-native-community/blur";
 import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
-import CalendarIcon from "../icons/Calendar";
-import CameraIcon from "../icons/Camera";
-import EmailIcon from "../icons/Email";
+import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import NotificationIcon from "../icons/Notification";
-import PhoneIcon from "../icons/Phone";
-import SmsNotificationIcon from "../icons/SmsNotification";
-import UserIcon from "../icons/User";
 import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
 import ZoeLogoIcon from "../icons/ZoeLogo";
@@ -30,11 +23,17 @@ import ApplePayIcon from "../icons/ApplePay";
 import SmsText from "../icons/Sms";
 import CheckBox from '../components/Checkbox';
 import AmexIcon from "../icons/Amex";
+import { toDp } from "../utils/sizes";
 
 function ProfileView({ navigation }: any): JSX.Element {
+  const [isQrCardVisible, setIsQrCardVisible] = useState(true);
   const [gender, setGender] = useState("M");
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['70%'], []);
+  const snapPoints = useMemo(() => ['70%', '100%'], []);
+
+  function handleBottomSheetChange(index: number) {
+    setIsQrCardVisible(index === 0);
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -54,37 +53,47 @@ function ProfileView({ navigation }: any): JSX.Element {
       >
         <ArrowLeft size="20" />
       </TouchableOpacity>
-        <View style={styles.gradientContainer}>
-          <View style={styles.gradientViewContainer}>
-            <LinearGradient
-              start={{x: 0.0, y: 0.25}}
-              end={{x: 0.5, y: 1.0}}
-              style={styles.gradientCardContainer}
-              colors={[
-                "#FE9E8C",
-                "#F86B93",
-                "#F44298",
-              ]}
+        <View
+          style={styles.gradientContainer}
+          key={'gradientContainer'}
+        >
+          {isQrCardVisible && (
+            <Animated.View
+              style={styles.gradientViewContainer}
+              key={"gradientContainer"}
+              entering={FadeIn.duration(400)}
+              exiting={FadeOut.duration(100)}
             >
-              <View style={styles.gradientCardHeader}>
-                <ZoeLogoIcon />
-                <View>
-                  <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
-                  <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+              <LinearGradient
+                start={{x: 0.0, y: 0.25}}
+                end={{x: 0.5, y: 1.0}}
+                style={styles.gradientCardContainer}
+                colors={[
+                  "#FE9E8C",
+                  "#F86B93",
+                  "#F44298",
+                ]}
+              >
+                <View style={styles.gradientCardHeader}>
+                  <ZoeLogoIcon />
+                  <View>
+                    <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
+                    <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+                  </View>
                 </View>
-              </View>
 
-              <View style={styles.gradientCardQrContainer}>
-                <View style={styles.gradientCardQrBox}>
-                  <Image
-                    style={styles.gradientCardQrImage}
-                    source={require("../assets/qr.png")}
-                  />
+                <View style={styles.gradientCardQrContainer}>
+                  <View style={styles.gradientCardQrBox}>
+                    <Image
+                      style={styles.gradientCardQrImage}
+                      source={require("../assets/qr.png")}
+                    />
+                  </View>
+                  <Text style={styles.qrNumber}>ID 273937783</Text>
                 </View>
-                <Text style={styles.qrNumber}>ID 273937783</Text>
-              </View>
-            </LinearGradient>
-          </View>
+              </LinearGradient>
+            </Animated.View>
+          )}
         </View>
         
         <BottomSheet
@@ -98,6 +107,7 @@ function ProfileView({ navigation }: any): JSX.Element {
           )}
           snapPoints={snapPoints}
           topInset={0}
+          onChange={handleBottomSheetChange}
         >
           <BottomSheetScrollView style={styles.scrollContainer}>
             <View style={styles.firstSection} />
@@ -121,11 +131,11 @@ function ProfileView({ navigation }: any): JSX.Element {
 
               <View style={styles.inputsRowContainer}>
                 <TextInput
-                  style={styles.input}
+                  style={styles.leftInput}
                   placeholder="First"
                 />
                 <TextInput
-                  style={styles.input}
+                  style={styles.rightInput}
                   placeholder="Last"
                 />
               </View>
@@ -152,7 +162,7 @@ function ProfileView({ navigation }: any): JSX.Element {
 
               <View style={styles.inputsRowContainer}>
                 <TextInput
-                  style={styles.input}
+                  style={styles.leftInput}
                   placeholder="MM"
                 />
                 <TextInput
@@ -160,7 +170,7 @@ function ProfileView({ navigation }: any): JSX.Element {
                   placeholder="DD"
                 />
                 <TextInput
-                  style={styles.input}
+                  style={styles.rightInput}
                   placeholder="YYYY"
                 />
               </View>
@@ -534,6 +544,30 @@ const styles = StyleSheet.create({
     // borderColor: "#6243E9",
     paddingHorizontal: 16,
   },
+  leftInput: {
+    flex: 1,
+    height: 55,
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "#EEE",
+    // borderColor: "#6243E9",
+    paddingHorizontal: 16,
+    borderTopLeftRadius: toDp(8),
+    borderBottomLeftRadius: toDp(8),
+    borderRightWidth: 1,
+  },
+  rightInput: {
+    flex: 1,
+    height: 55,
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "#EEE",
+    // borderColor: "#6243E9",
+    paddingHorizontal: 16,
+    borderTopRightRadius: toDp(8),
+    borderBottomRightRadius: toDp(8),
+    borderLeftWidth: 1,
+  },
   rowInput: {
     width: "100%",
     height: 55,
@@ -542,7 +576,7 @@ const styles = StyleSheet.create({
     borderColor: "#EEE",
     // borderColor: "#6243E9",
     paddingHorizontal: 16,
-    borderRadius: 5,
+    borderRadius: toDp(8),
   },
   listContainer: {
     alignItems: "center",

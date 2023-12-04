@@ -9,12 +9,13 @@ import CheckIcon from "../../icons/Check";
 type Props = {
   active?: boolean;
   onPress: () => void;
+  style?: any;
 }
 
 function Checkbox(props: Props) {
   return (
     <TouchableOpacity
-      style={[styles.container, props.active ? styles.active : styles.inactive]}
+      style={[styles.container, props.active ? styles.active : styles.inactive, props.style]}
       onPress={props.onPress}
     >
       {props.active && <CheckIcon color="white" />}

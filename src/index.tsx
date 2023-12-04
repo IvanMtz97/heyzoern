@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useAuth } from '@frontegg/react-native';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
+
 import Signin from './views/Signin';
 import HomeView from './views/Home';
 import DiscoverView from './views/Discover';
@@ -22,6 +24,7 @@ function Application(): JSX.Element {
 
   useEffect(() => {
     // login();
+    SystemNavigationBar.setBarMode("light");
   }, []);
 
   // if (!isAuthenticated && !initializing && !isLoading) return <UnauthorizedView />;
@@ -30,7 +33,7 @@ function Application(): JSX.Element {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           translucent
           backgroundColor={"transparent"}
         />

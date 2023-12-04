@@ -22,7 +22,7 @@ function BottomTabNavigator(props: any): JSX.Element {
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
   }
 
-  if (routeName === "ChatRoom" || routeName === "ChatDetails" || Route.name === "Profile") return <></>;
+  if (routeName === "ChatRoom" || routeName === "ChatDetails" || Route.name === "Profile" || routeName === "BiomarkersForm") return <></>;
 
   return (
     <View style={styles.container}>
@@ -52,7 +52,8 @@ function BottomTabNavigator(props: any): JSX.Element {
 
 const styles = StyleSheet.create({
   container: {
-    height: 77,
+    height: 67,
+    paddingTop: 15,
     width: "100%",
     backgroundColor: "white",
     borderTopWidth: 1,

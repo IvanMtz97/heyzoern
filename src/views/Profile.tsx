@@ -29,6 +29,7 @@ import StackedCards from "../components/StackedCards";
 import ApplePayIcon from "../icons/ApplePay";
 import SmsText from "../icons/Sms";
 import CheckBox from '../components/Checkbox';
+import AmexIcon from "../icons/Amex";
 
 function ProfileView({ navigation }: any): JSX.Element {
   const [gender, setGender] = useState("M");
@@ -197,9 +198,7 @@ function ProfileView({ navigation }: any): JSX.Element {
 
               <TouchableOpacity style={styles.paymentMethodItem}>
                 <View style={styles.amexContainer}>
-                  <Image
-                    source={require("../assets/amex.png")}
-                  />
+                  <AmexIcon />
                 </View>
                 <Text style={styles.amexLabel}>American Express</Text>
                 <ArrowRight style={styles.paymentItemArrow} color="black" />
@@ -489,10 +488,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   amexContainer: {
-    height: 16,
-    alignItems: "flex-end",
-    borderLeftWidth: 10,
-    borderLeftColor: "#006FCF",
   },
   applePayContainer: {
     width: 25,

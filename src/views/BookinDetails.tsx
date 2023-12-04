@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
+import ArrowDown from "../icons/ArrowDown";
 import ClockIcon from "../icons/Clock";
 import VideoCallIcon from "../icons/VideoCall";
 import WalletIcon from "../icons/Wallet";
@@ -22,10 +23,18 @@ import CreditCardIcon from "../icons/CreditCard";
 import ZoePayIcon from "../icons/ZoePay";
 import CalendarAddIcon from "../icons/CalendarAdd";
 import AppleWallet from "../icons/AppleWallet";
+import VerifiedIcon from "../icons/Verified";
+import VerifiedLightIcon from "../icons/VerifiedLight";
 
-function BookingDetailsView(): JSX.Element {
+function BookingDetailsView(props: any): JSX.Element {
   return (
     <BottomSheetScrollView contentContainerStyle={styles.bookingDetailsContainer}>
+      <TouchableOpacity
+        style={styles.menuHandle}
+        onPress={props.onDismiss}
+      >
+        <ArrowDown size="32" color="white" />
+      </TouchableOpacity>
       <View style={styles.bookingDetailsLabelsContainer}>
         <Text style={styles.appointmentDurationLabel}>12.30pm - 3.30pm</Text>
         <Text style={styles.discoveryCallLabel}>Discovery call</Text>
@@ -61,6 +70,11 @@ function BookingDetailsView(): JSX.Element {
           <TouchableOpacity style={styles.confirmationButton}>
             <BookingClockIcon />
           </TouchableOpacity>
+        </View>
+
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateMonth}>May</Text>
+          <Text style={styles.dateDay}>3</Text>
         </View>
       </View>
 
@@ -130,10 +144,7 @@ function BookingDetailsView(): JSX.Element {
         <View style={styles.doctorLabelsContainer}>
           <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
           <Text style={styles.doctorName}>Dr. David Wood</Text>
-          <Image
-            style={styles.verifiedImage}
-            source={require("../assets/VerifiedOutlined.png")}
-          />
+          <VerifiedLightIcon />
         </View>
       </View>
 
@@ -367,13 +378,15 @@ const styles = StyleSheet.create({
     marginLeft: 26,
   },
   doctorTitle: {
+    fontSize: 10,
     color: "white",
   },
   doctorName: {
     fontSize: 20,
     color: "white",
     fontWeight: "600",
-    marginTop: 10,
+    marginTop: 5,
+    marginBottom: 8,
   },
   verifiedImage: {
     width: 58,
@@ -387,6 +400,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 20,
+    gap: 20,
   },
   addToCalendarContainer: {
     width: 150,
@@ -419,6 +433,37 @@ const styles = StyleSheet.create({
     width: 135,
     height: 42,
   },
+  dateContainer: {
+    width: 59,
+    height: 63,
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor: "#624FA8",
+    position: "absolute",
+    right: 10,
+  },
+  dateMonth: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 12,
+    borderBottomWidth: 2,
+    lineHeight: 20,
+    borderColor: "#624FA8",
+    backgroundColor: "rgba(98, 79, 168, 0.36);",
+  },
+  dateDay: {
+    color: "white",
+    textAlign: "center",
+    fontSize: 25,
+  },
+  menuHandle: {
+    width: "100%",
+    backgroundColor: "#36237D",
+    height: 63,
+    justifyContent: "center",
+    paddingTop: 20,
+    paddingLeft: 20,
+  }
 });
 
 export default BookingDetailsView;

@@ -23,7 +23,6 @@ import TelephoneIcon from "../icons/TelephoneIcon";
 import BookingDetailsView from "./BookinDetails";
 import WalletIcon from "../icons/Wallet";
 import VideoCallIcon from "../icons/VideoCall";
-import ArrowDown from "../icons/ArrowDown";
 import VerifiedIcon from "../icons/Verified";
 import AppleWallet from "../icons/AppleWallet";
 
@@ -34,6 +33,11 @@ function BookingView({ navigation }: any): JSX.Element {
   const handleBookingButton = useCallback(() => {
     bottomSheetRef.current?.present();
     SystemNavigationBar.setNavigationColor('#36237D');
+  }, [bottomSheetRef]);
+
+  const handleDismissPress = useCallback(() => {
+    bottomSheetRef.current?.forceClose();
+    SystemNavigationBar.setNavigationColor('white');
   }, [bottomSheetRef]);
 
   return (
@@ -158,19 +162,10 @@ function BookingView({ navigation }: any): JSX.Element {
           index={0}
           snapPoints={snapPoints}
           enablePanDownToClose
-          handleComponent={() => (
-            <TouchableOpacity
-              style={styles.menuHandle}
-              onPress={() => {
-                bottomSheetRef.current?.forceClose();
-                SystemNavigationBar.setNavigationColor('white');
-              }}
-            >
-              <ArrowDown size="32" color="white" />
-            </TouchableOpacity>
-          )}
+          handleComponent={null}
+          style={styles.bottomSheet}
         >
-        <BookingDetailsView />
+        <BookingDetailsView onDismiss={handleDismissPress} />
       </BottomSheetModal>
     </>
   )
@@ -180,6 +175,11 @@ const styles = StyleSheet.create({
   bookingContainer: {
     backgroundColor: "#FAF9F8",
     height: "100%",
+  },
+  bottomSheet: {
+    borderTopLeftRadius: 28,
+    borderTopRightRadius: 28,
+    overflow: "hidden",
   },
   contentContainer: {
     paddingHorizontal: 19,

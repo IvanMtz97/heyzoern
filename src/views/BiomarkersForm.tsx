@@ -10,6 +10,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import LinearGradient from 'react-native-linear-gradient';
 import GradientText from "../components/GradientText";
 import ProfileButton from "../components/ProfileButton";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import BackIcon from "../icons/Back";
 
 function BiomarkersForm({ navigation }: any) {
   return (
@@ -24,6 +26,13 @@ function BiomarkersForm({ navigation }: any) {
         <ScrollView
           style={styles.scrollContainer}
         >
+
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <BackIcon />
+          </TouchableOpacity>
 
           <View
             style={styles.welcomeContainer}
@@ -96,8 +105,17 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 30,
   },
+  backButton: {
+    width: 31,
+    height: 31,
+    backgroundColor: "#F5F5F5",
+    borderRadius: 31,
+    marginTop: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   welcomeContainer: {
-    marginTop: 40,
+    marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },

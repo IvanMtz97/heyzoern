@@ -181,10 +181,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 40,
     justifyContent: "space-between",
-    height: 65,
+    height: 85,
     width: "100%",
     borderBottomWidth: 1,
     borderBottomColor: "#DCDCDC",
+    paddingTop: 20,
   },
   headerLabel: {
     color: "black",

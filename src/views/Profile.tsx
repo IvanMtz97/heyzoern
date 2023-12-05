@@ -178,7 +178,7 @@ function ProfileView({ navigation }: any): JSX.Element {
 
               <TouchableOpacity style={styles.paymentMethodItem}>
                 <View style={styles.amexContainer}>
-                  <AmexIcon />
+                  <Image style={styles.amexIcon} source={require("../assets/amex.png")} />
                 </View>
                 <Text style={styles.amexLabel}>American Express</Text>
                 <ArrowRight style={styles.paymentItemArrow} color="black" />
@@ -660,6 +660,10 @@ const styles = StyleSheet.create({
     }, {
       scaleY: 0.9,
     }],
+  },
+  amexIcon: {
+    width: 25,
+    height: 16,
   },
 });
 

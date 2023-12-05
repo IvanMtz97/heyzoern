@@ -17,43 +17,51 @@ type Props = {
 function QrCard(props: Props) {
   return (
     <TouchableOpacity onPress={props.onPress}>
-      <LinearGradient
-        start={{x: 0.0, y: 0.25}}
-        end={{x: 0.5, y: 1.0}}
-        style={styles.gradientCardContainer}
-        colors={[
-          "#FE9E8C",
-          "#F86B93",
-          "#F44298",
-        ]}
-      >
-      <View style={styles.gradientCardHeader}>
-        <ZoeLogoIcon />
-        <View>
-          <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
-          <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+      <View style={styles.gradientView}>
+        <LinearGradient
+          start={{x: 0.0, y: 0.25}}
+          end={{x: 0.5, y: 1.0}}
+          style={styles.gradientCardContainer}
+          colors={[
+            "#FE9E8C",
+            "#F86B93",
+            "#F44298",
+          ]}
+        >
+        <View style={styles.gradientCardHeader}>
+          <ZoeLogoIcon />
+          <View>
+            <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
+            <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+          </View>
         </View>
-      </View>
 
-      <View style={styles.gradientCardQrContainer}>
-        <View style={styles.gradientCardQrBox}>
-          <Image
-            style={styles.gradientCardQrImage}
-            source={require("../../assets/qr.png")}
-          />
+        <View style={styles.gradientCardQrContainer}>
+          <View style={styles.gradientCardQrBox}>
+            <Image
+              style={styles.gradientCardQrImage}
+              source={require("../../assets/qr.png")}
+            />
+          </View>
+          <Text style={styles.qrNumber}>ID 273937783</Text>
         </View>
-        <Text style={styles.qrNumber}>ID 273937783</Text>
+        </LinearGradient>
       </View>
-      </LinearGradient>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  gradientCardContainer: {
+  gradientView: {
     width: "100%",
     height: 238,
     borderRadius: 28,
+    overflow: "hidden",
+    backgroundColor: "white",
+    elevation: 20,
+  },
+  gradientCardContainer: {
+    flex: 1,
     paddingVertical: 24,
     paddingHorizontal: 27,
   },

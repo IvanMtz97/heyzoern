@@ -24,6 +24,7 @@ import CheckBox from '../components/Checkbox';
 import AmexIcon from "../icons/Amex";
 import { toDp } from "../utils/sizes";
 import QrCard from "../components/QrCard";
+import BackButton from "../components/BackButton";
 
 function ProfileView({ navigation }: any): JSX.Element {
   const [isQrCardVisible, setIsQrCardVisible] = useState(true);
@@ -46,13 +47,9 @@ function ProfileView({ navigation }: any): JSX.Element {
           "#FFEEDC",
         ]}
       >
-
-      <TouchableOpacity
-        style={styles.backButtonContainer}
-        onPress={() => navigation.goBack()}
-      >
-        <ArrowLeft size="20" />
-      </TouchableOpacity>
+        <View style={styles.backButtonContainer}>
+          <BackButton onPress={() => navigation.goBack()} />
+        </View>
         <View
           style={styles.gradientContainer}
           key={'gradientContainer'}
@@ -247,14 +244,8 @@ function ProfileView({ navigation }: any): JSX.Element {
 
 const styles = StyleSheet.create({
   backButtonContainer: {
-    width: 31,
-    height: 31,
-    borderRadius: 31,
-    backgroundColor: "#F5F5F5",
-    justifyContent: "center",
-    alignItems: "center",
     top: 20,
-    left: 15,
+    left: 25,
   },
   stepperTitle: {
     fontSize: 35,

@@ -7,13 +7,11 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 import Signin from './views/Signin';
-import HomeView from './views/Home';
 import DiscoverView from './views/Discover';
 import ChatNavigator from './navigators/Chat';
 import DocumentsView from './views/Documents';
 import BottomTabNavigator from './components/BottomTabNavigator';
-import ProfileView from './views/Profile';
-import UnauthorizedView from './views/Unauthorized';
+import ProfileNavigator from './navigators/Profile';
 import BookingNavigator from './navigators/Booking';
 import HomeNavigator from './navigators/Home';
 
@@ -48,7 +46,7 @@ function Application(): JSX.Element {
           <Tab.Screen name="Booking" component={BookingNavigator} />
           <Tab.Screen name="Chat" component={ChatNavigator} />
           <Tab.Screen name="Documments" component={DocumentsView} />
-          <Tab.Screen name="Profile" component={ProfileView} />
+          <Tab.Screen name="Profile" component={ProfileNavigator} />
           <Tab.Screen name="Signin" component={Signin} />
         </Tab.Navigator>
       </BottomSheetModalProvider>

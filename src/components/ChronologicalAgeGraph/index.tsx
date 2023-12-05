@@ -5,6 +5,7 @@ import {
   StyleSheet,
 } from "react-native";
 import Gauge from "../../icons/Gauge";
+import { toDp } from "../../utils/sizes";
 
 function ChronologicalAgeGraph(): JSX.Element {
   return (
@@ -62,17 +63,20 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "800",
     marginBottom: 10,
+    fontFamily: "TestCalibre-Medium"
   },
   innerAgeLabel: {
     color: "#5BA87A",
     fontSize: 14,
     fontWeight: "600",
+    fontFamily: "TestCalibre-Medium"
   },
   graphContainer: {
     backgroundColor: "white",
     height: 349,
     borderRadius: 28,
-    elevation: 2,
+    elevation: 20,
+    shadowColor: "rgba(0, 0, 0, 0.4)",
   },
   ageContainer: {
     marginTop: 15,
@@ -82,14 +86,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
+    fontFamily: "Manrope-Regular"
   },
   ageDisclaimer: {
-    fontSize: 14,
+    fontSize: toDp(16),
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
     marginTop: 5,
     marginBottom: 5,
+    fontFamily: "TestCalibre-Medium"
   },
 });
 

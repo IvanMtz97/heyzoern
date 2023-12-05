@@ -36,7 +36,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,29 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PPSupplyMono-Regular.otf</string>
+		<string>PPSupplyMono-Ultralight.otf</string>
+		<string>PPSupplySans-Regular.otf</string>
+		<string>PPSupplySans-Ultralight.otf</string>
+		<string>TestCalibre-Black.otf</string>
+		<string>TestCalibre-BlackItalic.otf</string>
+		<string>TestCalibre-Bold.otf</string>
+		<string>TestCalibre-BoldItalic.otf</string>
+		<string>TestCalibre-Light.otf</string>
+		<string>TestCalibre-LightItalic.otf</string>
+		<string>TestCalibre-Medium.otf</string>
+		<string>TestCalibre-MediumItalic.otf</string>
+		<string>TestCalibre-Regular.otf</string>
+		<string>TestCalibre-RegularItalic.otf</string>
+		<string>Manrope-Bold.ttf</string>
+		<string>Manrope-ExtraBold.ttf</string>
+		<string>Manrope-ExtraLight.ttf</string>
+		<string>Manrope-Light.ttf</string>
+		<string>Manrope-Medium.ttf</string>
+		<string>Manrope-Regular.ttf</string>
+		<string>Manrope-SemiBold.ttf</string>
+	</array>
 </dict>
 </plist>

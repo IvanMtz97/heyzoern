@@ -242,6 +242,7 @@ function ProfileView({ navigation }: any): JSX.Element {
                     circleBorderWidth={2}
                     circleBorderActiveColor="#5837E8"
                     circleBorderInactiveColor="#bebebe"
+                    containerStyle={styles.switch}
                   />
                 </View>
                 <View style={styles.notificationDetailRow}>
@@ -259,6 +260,7 @@ function ProfileView({ navigation }: any): JSX.Element {
                     backgroundInactive="#F1F1F1"
                     circleBorderWidth={2}
                     circleBorderInactiveColor="#F1F1F1"
+                    containerStyle={styles.switch}
                   />
                 </View>
               </View>
@@ -408,9 +410,10 @@ const styles = StyleSheet.create({
   },
   qrNumber: {
     color: "#601D3C",
-    fontSize: 12,
+    fontSize: toDp(9),
     fontWeight: "normal",
     marginTop: 15,
+    fontFamily: "PPSupplyMono-Regular"
   },
   blurView: {
     position: "absolute",
@@ -733,6 +736,13 @@ const styles = StyleSheet.create({
     borderColor: "black",
     justifyContent: "center",
     alignItems: "center",
+  },
+  switch: {
+    transform: [{
+      scaleX: 0.9,
+    }, {
+      scaleY: 0.9,
+    }],
   },
 });
 

@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import ChevronRightIcon from "../../icons/ChevronRight";
+import { toDp } from "../../utils/sizes";
 
 type Props = {
   onPress: () => void;
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingLeft: 13,
     paddingRight: 20,
-    marginTop: 22,
+    marginTop: toDp(22),
   },
   healthAppImageContainer: {
     width: 36,

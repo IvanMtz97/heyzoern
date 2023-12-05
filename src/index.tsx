@@ -33,7 +33,7 @@ function Application(): JSX.Element {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <BottomSheetModalProvider>
         <StatusBar
-          barStyle="light-content"
+          barStyle="dark-content"
           translucent
           backgroundColor={"transparent"}
         />

@@ -53,7 +53,6 @@ function BottomTabNavigator(props: any): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     height: 67,
-    paddingTop: 15,
     width: "100%",
     backgroundColor: "white",
     borderTopWidth: 1,

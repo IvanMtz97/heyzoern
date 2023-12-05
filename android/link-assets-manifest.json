@@ -1,0 +1,89 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Manrope-Bold.ttf",
+      "sha1": "a6b63c832d12337efb3123f47863f54472c81bf5"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-ExtraBold.ttf",
+      "sha1": "01e9f1ed4df60771240fd42f5ac9dcaf398f110b"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-ExtraLight.ttf",
+      "sha1": "03f11f0309f7f955fe90e3fdf22fee5e60bada4e"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-Light.ttf",
+      "sha1": "67a7446c44660168ed179812753b03390858aa92"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-Medium.ttf",
+      "sha1": "d62e1b2498f65ea5bc20fc5e365d19239527b419"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-Regular.ttf",
+      "sha1": "036b14064c7b90b4b200f2730981effea5e58b15"
+    },
+    {
+      "path": "src/assets/fonts/Manrope-SemiBold.ttf",
+      "sha1": "e423e112f4832916b05308934c10aa84fd14c607"
+    },
+    {
+      "path": "src/assets/fonts/PPSupplyMono-Regular.otf",
+      "sha1": "dd647b579863cb9bd31506266cb961ac8969c85e"
+    },
+    {
+      "path": "src/assets/fonts/PPSupplyMono-Ultralight.otf",
+      "sha1": "f4d4b5ad16975b190be4eea776cba1298c32e30d"
+    },
+    {
+      "path": "src/assets/fonts/PPSupplySans-Regular.otf",
+      "sha1": "ff9cfe288ef222600c4850c6a2e8c6a9ce5939b8"
+    },
+    {
+      "path": "src/assets/fonts/PPSupplySans-Ultralight.otf",
+      "sha1": "7700cd848f55705df7dc93946f5ba11572a24639"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-Black.otf",
+      "sha1": "3457aa5b3c244fb322cd64850ee6cc695a1b443a"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-BlackItalic.otf",
+      "sha1": "2c9dc07e2b6d085cbef6fdf586139167ad4eb7c1"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-Bold.otf",
+      "sha1": "f0dcba149ba0ae94cc07ba5a18aa2ed4aa9dd8b0"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-BoldItalic.otf",
+      "sha1": "a2a6b4953a6dda520210662bb1498569d7b59338"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-Light.otf",
+      "sha1": "b9bdadd9d8ba5bda23dbaf1a1fdfc9ff6a37f92d"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-LightItalic.otf",
+      "sha1": "e9cdbb1518f8c48e03e9d48eeece9e571bb9c468"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-Medium.otf",
+      "sha1": "fd6a38c9e6fe67ba83bd702aee4d157840912638"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-MediumItalic.otf",
+      "sha1": "29234d2f1b96cf2f6c10c223c45aa2f70f3696ff"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-Regular.otf",
+      "sha1": "4a09fdaed6aed57a411d9833fe05436d8e65dd56"
+    },
+    {
+      "path": "src/assets/fonts/TestCalibre-RegularItalic.otf",
+      "sha1": "bdeded411193819d5124b1e8f780fb9a2f16eced"
+    }
+  ]
+}

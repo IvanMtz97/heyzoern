@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useCallback, useEffect } from "react";
+import React, { useRef, useMemo, useCallback, useEffect, useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -27,8 +27,10 @@ import VideoCallIcon from "../icons/VideoCall";
 import VerifiedIcon from "../icons/Verified";
 import AppleWallet from "../icons/AppleWallet";
 import { toDp } from "../utils/sizes";
+import Date from "../components/Date";
 
 function BookingView({ navigation }: any): JSX.Element {
+  const [sheetIndex, setSheetIndex] = useState(-1);
   const bottomSheetRef = useRef<BottomSheetModal>(null);
   const snapPoints = useMemo(() => ['95%', '100%'], []);
 
@@ -39,6 +41,18 @@ function BookingView({ navigation }: any): JSX.Element {
   const handleDismissPress = useCallback(() => {
     bottomSheetRef.current?.forceClose();
   }, [bottomSheetRef]);
+
+  const handleSheetChange = useCallback((index: number) => {
+    setSheetIndex(index);
+  }, []);
+
+  useEffect(() => {
+    if (sheetIndex === -1) {
+      SystemNavigationBar.setNavigationColor('white');
+    } else {
+      SystemNavigationBar.setNavigationColor('#36237D');
+    }
+  }, [sheetIndex]);
 
   return (
     <>
@@ -91,10 +105,18 @@ function BookingView({ navigation }: any): JSX.Element {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.dateContainer}>
-                  <Text style={styles.dateMonth}>May</Text>
-                  <Text style={styles.dateDay}>3</Text>
-                </View>
+                <Date
+                  month="May"
+                  day={3}
+                  textsColor="white"
+                  borderColor="#624FA8"
+                  monthBackgroundColor="rgba(98, 79, 168, 0.36)"
+                  style={{
+                    position: "absolute",
+                    right: 25,
+                    top: 28,
+                  }}
+                />
               </TouchableOpacity>
 
               <View style={styles.textsContainer}>
@@ -116,7 +138,7 @@ function BookingView({ navigation }: any): JSX.Element {
                 />
                 <View style={styles.doctorLabelsContainer}>
                   <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
-                  <Text style={styles.doctorName}>Dr. David Wood</Text>
+                  <Text style={styles.doctorName}><Text style={styles.doctorSuffix}>Dr. </Text>David Wood</Text>
                   <VerifiedIcon />
                 </View>
               </View>
@@ -144,14 +166,22 @@ function BookingView({ navigation }: any): JSX.Element {
               />
               <View style={styles.doctorLabelsContainer}>
                 <Text style={styles.doctorTitle}>CHIEF MEDICAL OFFICER, ADVANTAGE IR</Text>
-                <Text style={styles.doctorName}>Dr. David Wood</Text>
+                <Text style={styles.doctorName}><Text style={styles.doctorSuffix}>Dr. </Text>David Wood</Text>
                 <VerifiedIcon />
               </View>
 
-              <View style={styles.appointmentDateContainer}>
-                <Text style={styles.appointmentDateMonth}>May</Text>
-                <Text style={styles.appointmentDateDay}>3</Text>
-              </View>
+              <Date
+                month="May"
+                day={3}
+                textsColor="black"
+                borderColor="#F3F3F3"
+                monthBackgroundColor="#F6F6F6"
+                style={{
+                  position: "absolute",
+                  right: 20,
+                  top: 58,
+                }}
+              />
             </View>
           </View>
         </ScrollView>
@@ -163,14 +193,8 @@ function BookingView({ navigation }: any): JSX.Element {
           snapPoints={snapPoints}
           enablePanDownToClose
           handleComponent={null}
-          onChange={(status) => {
-            if (status === -1) {
-              SystemNavigationBar.setNavigationColor('white');
-            } else {
-              SystemNavigationBar.setNavigationColor('#36237D');
-            }
-          }}
-          style={styles.bottomSheet}
+          onChange={handleSheetChange}
+          style={[styles.bottomSheet, sheetIndex === 1 ? styles.flatBorders : {}]}
         >
         <BookingDetailsView onDismiss={handleDismissPress} />
       </BottomSheetModal>
@@ -182,6 +206,10 @@ const styles = StyleSheet.create({
   bookingContainer: {
     backgroundColor: "#FAF9F8",
     height: "100%",
+  },
+  flatBorders: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
   },
   bottomSheet: {
     borderTopLeftRadius: 28,
@@ -262,30 +290,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "600",
   },
-  dateContainer: {
-    width: 59,
-    height: 63,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: "#624FA8",
-    position: "absolute",
-    right: 25,
-    top: 28,
-  },
-  dateMonth: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 12,
-    borderBottomWidth: 2,
-    lineHeight: 20,
-    borderColor: "#624FA8",
-    backgroundColor: "rgba(98, 79, 168, 0.36);",
-  },
-  dateDay: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 25,
-  },
   textsContainer: {
     paddingHorizontal: 25,
     paddingVertical: 20,
@@ -333,14 +337,23 @@ const styles = StyleSheet.create({
   },
   doctorTitle: {
     color: "black",
-    fontSize: 10,
+    fontSize: toDp(7),
     marginBottom: 8,
+    fontFamily: "PPSupplyMono-Regular"
+  },
+  doctorSuffix: {
+    fontSize: 18,
+    color: "black",
+    fontWeight: "600",
+    marginBottom: 8,
+    fontFamily: "TestCalibre-MediumItalic"
   },
   doctorName: {
     fontSize: 18,
     color: "black",
     fontWeight: "600",
     marginBottom: 8,
+    fontFamily: "TestCalibre-Medium"
   },
   verifiedImage: {
     width: 58,
@@ -404,31 +417,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: toDp(23),
     marginBottom: 10,
-  },
-  appointmentDateContainer: {
-    width: toDp(49),
-    height: toDp(53),
-    borderRadius: toDp(12),
-    borderWidth: toDp(1),
-    borderColor: "#F3F3F3",
-    position: "absolute",
-    right: 20,
-    top: 58,
-    overflow: "hidden",
-  },
-  appointmentDateMonth: {
-    color: "black",
-    textAlign: "center",
-    fontSize: 12,
-    borderBottomWidth: 2,
-    lineHeight: 20,
-    borderColor: "#F3F3F3",
-    backgroundColor: '#F6F6F6',
-  },
-  appointmentDateDay: {
-    color: "black",
-    textAlign: "center",
-    fontSize: 25,
   },
   menuHandle: {
     width: "100%",

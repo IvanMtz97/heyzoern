@@ -36,8 +36,10 @@ function HomeView({ navigation }: any): JSX.Element {
           <ChronologicalAgeGraph />
           <ConnectHealthApp onPress={() => navigation.navigate("BiomarkersForm")} />
         </View>
-        <OptimizedBiomarkers />
-        <PendingBiomarkers />
+        <View style={styles.biomarkersContainer}>
+          <OptimizedBiomarkers />
+          <PendingBiomarkers />
+        </View>
       </ScrollView>
     </SafeAreaView>
   )
@@ -90,8 +92,8 @@ const styles = StyleSheet.create({
     position: "relative",
     bottom: 30,
   },
-  sectionContainer: {
-    paddingHorizontal: 16,
+  biomarkersContainer: {
+    marginBottom: 36,
   },
 });
 

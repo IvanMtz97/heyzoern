@@ -11,6 +11,10 @@ function ChronologicalAgeGraph(): JSX.Element {
   return (
     <View style={styles.graphContainer}>
       <View style={styles.gaugeContainer}>
+        <View style={styles.slidesIconsContainer}>
+          <View style={[styles.slideIcon, { backgroundColor: "#5137BD" }]} />
+          <View style={[styles.slideIcon, { backgroundColor: "#D9D9D9" }]} />
+        </View>
         <Gauge percentages={[21, 36]} />
       </View>
       <View style={styles.innerAgeContainer}>
@@ -32,8 +36,8 @@ function ChronologicalAgeGraph(): JSX.Element {
 const styles = StyleSheet.create({
   gaugeContainer: {
     width: "100%",
-    height: 200,
-    paddingTop: 42,
+    height: 210,
+    paddingTop: 62,
     alignItems: "center",
     overflow:"hidden",
     position: "relative",
@@ -43,6 +47,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 40,
     marginTop: 20,
+  },
+  slidesIconsContainer: {
+    position: "absolute",
+    width: "100%",
+    height: 30,
+    top: 15,
+    zIndex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    gap: 10,
+  },
+  slideIcon: {
+    width: 9,
+    height: 9,
+    borderRadius: 9,
   },
   gaugeLabel: {
     color: "#A8A8A8",
@@ -73,13 +93,13 @@ const styles = StyleSheet.create({
   },
   graphContainer: {
     backgroundColor: "white",
-    height: 349,
+    height: 379,
     borderRadius: 28,
     elevation: 20,
-    shadowColor: "rgba(0, 0, 0, 0.4)",
+    shadowColor: "rgba(0, 0, 0, 0.15)",
   },
   ageContainer: {
-    marginTop: 15,
+    marginTop: 30,
   },
   ageLabel: {
     fontSize: 20,

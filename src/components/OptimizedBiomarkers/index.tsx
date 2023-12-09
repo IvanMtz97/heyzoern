@@ -70,7 +70,6 @@ function OptimizedBiomarkers(): JSX.Element {
 
 const styles = StyleSheet.create({
   biomarkersContainer: {
-    marginTop: 33,
     marginBottom: 23,
   },
   labelsContainer: {

@@ -22,6 +22,7 @@ function QrView({ navigation }: any) {
       <View style={styles.bottomContainer}>
         <View style={styles.holdQrContainer}>
           <Image
+            style={styles.holdImage}
             source={require("../assets/holdQr.png")}
           />
         </View>
@@ -51,8 +52,8 @@ const styles = StyleSheet.create({
     marginTop: toDp(63),
   },
   holdQrContainer: {
-    width: toDp(100),
-    height: toDp(100),
+    width: 100,
+    height: 100,
     borderRadius: toDp(100),
     borderWidth: toDp(6),
     borderColor: "#3A2687",
@@ -60,6 +61,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
     margin: "auto",
+  },
+  holdImage: {
+    position: "relative",
+    top: 5,
+    left: 5,
   },
   disclaimer: {
     color: "#8D8D8D",

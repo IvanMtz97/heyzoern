@@ -16,9 +16,9 @@ import PendingBiomarkers from "../components/PendingBiomarkers";
 
 function HomeView({ navigation }: any): JSX.Element {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <ScrollView style={styles.viewContainer}>
-        <View style={styles.contentContainer}>
+        <View style={styles.viewTopContainer}>
           <ImageBackground
             style={styles.topContainer}
             source={require("../assets/searchBackground.png")}
@@ -30,35 +30,50 @@ function HomeView({ navigation }: any): JSX.Element {
               <ProfileButton onPress={() => navigation.navigate("Profile")} />
             </View>
           </ImageBackground>
-          <View style={styles.graphContainer}>
-            <ChronologicalAgeGraph />
-            <ConnectHealthApp onPress={() => navigation.navigate("BiomarkersForm")} />
-            <OptimizedBiomarkers />
-            <PendingBiomarkers />
-          </View>
         </View>
+        <View style={styles.roundedView} />
+        <View style={styles.graphContainer}>
+          <ChronologicalAgeGraph />
+          <ConnectHealthApp onPress={() => navigation.navigate("BiomarkersForm")} />
+        </View>
+        <OptimizedBiomarkers />
+        <PendingBiomarkers />
       </ScrollView>
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  roundedView: {
+    height: 30,
+    width: "100%",
+    backgroundColor: "#faf9f7",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    elevation: 20,
+    position: "relative",
+    bottom: 30,
+  },
   viewContainer: {
     backgroundColor: "#faf9f7",
-    position: "relative",
+    flex: 1,
+    paddingTop: 20,
   },
   contentContainer: {
     position: "relative",
-    height: 1140,
+  },
+  viewTopContainer: {
+    height: 150,
   },
   topContainer: {
-    width: "100%",
-    height: 140,
-    position: "absolute",
+    flex: 1,
   },
   welcomeContainer: {
     marginTop: 40,
-    paddingHorizontal: 16,
+    paddingHorizontal: 26,
     flexDirection: "row",
     justifyContent: "space-between",
   },
@@ -68,16 +83,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   graphContainer: {
-    paddingHorizontal: 16,
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
     backgroundColor: '#FAF9F8',
-    paddingTop: 36,
-    elevation: 20,
+    paddingTop: 16,
+    paddingHorizontal: 16,
     shadowColor: "rgba(0, 0, 0, 0.9)",
-    position: "absolute",
-    zIndex: 2,
-    top: 115,
+    position: "relative",
+    bottom: 30,
+  },
+  sectionContainer: {
+    paddingHorizontal: 16,
   },
 });
 

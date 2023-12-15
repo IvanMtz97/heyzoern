@@ -5,8 +5,10 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
+import { useAuth } from "@frontegg/react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import LinearGradient from 'react-native-linear-gradient';
+import { format } from "date-fns";
 import ZoeLogoIcon from "../../icons/ZoeLogo";
 import { toDp } from "../../utils/sizes";
 
@@ -15,6 +17,8 @@ type Props = {
 }
 
 function QrCard(props: Props) {
+  const { user } = useAuth();
+  console.log("USER", user);
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={styles.gradientView}>
@@ -31,8 +35,8 @@ function QrCard(props: Props) {
         <View style={styles.gradientCardHeader}>
           <ZoeLogoIcon />
           <View>
-            <Text style={styles.gradientCardDate}>Joined April 29, 2023</Text>
-            <Text style={styles.gradientCardName}>Matthew Doyle</Text>
+            <Text style={styles.gradientCardDate}>Joined {format(new Date(user?.activeTenant.createdAt + ""), "MMMM d, yyyy")}</Text>
+            <Text style={styles.gradientCardName}>{user?.name}</Text>
           </View>
         </View>
 

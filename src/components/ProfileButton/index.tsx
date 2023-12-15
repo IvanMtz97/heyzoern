@@ -1,14 +1,18 @@
+import { useAuth } from "@frontegg/react-native";
 import React from "react";
 import {
   Text,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { getNameInitials } from "../../utils/user";
 
 function ProfileButton({ onPress }: any): JSX.Element {
+  const { user } = useAuth();
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.profileButton}>
-      <Text style={styles.text}>MD</Text>
+      <Text style={styles.text}>{getNameInitials(user?.name + "")}</Text>
     </TouchableOpacity>
   )
 }

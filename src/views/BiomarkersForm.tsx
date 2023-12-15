@@ -12,8 +12,11 @@ import GradientText from "../components/GradientText";
 import ProfileButton from "../components/ProfileButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import BackIcon from "../icons/Back";
+import { useAuth } from "@frontegg/react-native";
 
 function BiomarkersForm({ navigation }: any) {
+  const { user } = useAuth();
+
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -37,7 +40,7 @@ function BiomarkersForm({ navigation }: any) {
           <View
             style={styles.welcomeContainer}
           >
-            <GradientText colors={["#6243E9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
+            <GradientText colors={["#6243E9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, {user?.name}</GradientText>
             <ProfileButton onPress={() => navigation.navigate("Profile")} />
           </View>
           <Text style={styles.subtitle}>Add your bio Markers</Text>

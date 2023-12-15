@@ -2,11 +2,11 @@ import React from "react";
 import {
   SafeAreaView,
   View,
-  Text,
   StyleSheet,
   ScrollView,
   ImageBackground,
 } from "react-native";
+import { useAuth } from "@frontegg/react-native";
 import ProfileButton from "../components/ProfileButton";
 import GradientText from "../components/GradientText";
 import ChronologicalAgeGraph from "../components/ChronologicalAgeGraph";
@@ -15,6 +15,8 @@ import OptimizedBiomarkers from "../components/OptimizedBiomarkers";
 import PendingBiomarkers from "../components/PendingBiomarkers";
 
 function HomeView({ navigation }: any): JSX.Element {
+  const { user } = useAuth();
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.viewContainer}>
@@ -26,7 +28,7 @@ function HomeView({ navigation }: any): JSX.Element {
             <View
               style={styles.welcomeContainer}
             >
-              <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, Matthew</GradientText>
+              <GradientText colors={["#6243e9", "#392685", "#392685"]} style={styles.welcomeTitle}>Hey, {user?.name}</GradientText>
               <ProfileButton onPress={() => navigation.navigate("Profile")} />
             </View>
           </ImageBackground>

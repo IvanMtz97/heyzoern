@@ -2,8 +2,8 @@ import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 const VerifiedIcon = (props: any) => (
   <Svg
-    width="58"
-    height="16"
+    width={props.width || "58"}
+    height={props.height || "16"}
     viewBox="0 0 58 16"
     fill="none"
     {...props}

@@ -10,7 +10,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FronteggWrapper } from '@frontegg/react-native';
-import Application from './src';
+import Application from './src/navigators/Authless';
 import 'react-native-gesture-handler';
 
 function App(): JSX.Element {

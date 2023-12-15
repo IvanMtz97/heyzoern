@@ -3,8 +3,8 @@ import Svg, { Path } from "react-native-svg";
 const CompassIcon = (props: any) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width="27"
-    height="28"
+    width="31"
+    height="31"
     viewBox="0 0 27 28"
     fill="none"
     {...props}

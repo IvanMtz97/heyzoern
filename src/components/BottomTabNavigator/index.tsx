@@ -16,10 +16,11 @@ function BottomTabNavigator(props: any): JSX.Element {
   const routeName = getFocusedRouteNameFromRoute(Route);
   function getIcon(routeName: string, activeIndex: number) {
     if (routeName === "Home") return <HomeIcon disabled={activeIndex !== 0 && activeIndex !== 5} />;
-    if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 1} />;
-    if (routeName === "Booking") return <CalendarIcon disabled={activeIndex !== 2} />;
-    if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 3} />;
-    if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 4} />;
+    if (routeName === "Directory") return <CompassIcon disabled={activeIndex !== 1} />;
+    if (routeName === "Discover") return <CompassIcon disabled={activeIndex !== 2} />;
+    if (routeName === "Booking") return <CalendarIcon disabled={activeIndex !== 3} />;
+    if (routeName === "Chat") return <ChatIcon  disabled={activeIndex !== 4} />;
+    if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 5} />;
   }
 
   if (routeName === "ChatRoom" || routeName === "ChatDetails" || Route.name === "Profile" || routeName === "BiomarkersForm") return <></>;
@@ -31,7 +32,8 @@ function BottomTabNavigator(props: any): JSX.Element {
           route !== "Profile" &&
           route !== "Discover" &&
           route !== "Signin" &&
-          route !== "ChatRoom"
+          route !== "ChatRoom" &&
+          route !== "Documments"
         )
         .map((route: string, i: number) => (
         <TouchableOpacity

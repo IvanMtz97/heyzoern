@@ -5,12 +5,15 @@ import {
   View, TouchableOpacity,
 } from "react-native";
 import { useNavigation } from '@react-navigation/native';
+import { useAuth } from "@frontegg/react-native";
+import { getNameInitials } from "../../utils/user";
 
 type ViewHeaderProps = {
   title: string;
 };
 
 function ViewHeader({ title }: ViewHeaderProps): JSX.Element {
+  const { user } = useAuth();
   const navigation = useNavigation();
 
   return (
@@ -20,7 +23,7 @@ function ViewHeader({ title }: ViewHeaderProps): JSX.Element {
           onPress={() => navigation.navigate("Profile" as never)}
           style={styles.profileButton}
         >
-          <Text style={styles.profileText}>MD</Text>
+          <Text style={styles.profileText}>{getNameInitials(user?.name + "")}</Text>
         </TouchableOpacity>
     </View>
   );

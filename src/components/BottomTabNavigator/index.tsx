@@ -23,7 +23,12 @@ function BottomTabNavigator(props: any): JSX.Element {
     if (routeName === "Documments") return <DocumentsIcon disabled={activeIndex !== 5} />;
   }
 
-  if (routeName === "ChatRoom" || routeName === "ChatDetails" || Route.name === "Profile" || routeName === "BiomarkersForm") return <></>;
+  if (routeName === "ChatRoom" ||
+    routeName === "ChatDetails" ||
+    Route.name === "Profile" ||
+    routeName === "BiomarkersForm" ||
+    routeName === "DirectoryListing"
+  ) return <></>;
 
   return (
     <View style={styles.container}>

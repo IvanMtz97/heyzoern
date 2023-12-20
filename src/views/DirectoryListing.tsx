@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -6,7 +6,10 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
+import useCompanies from '../hooks/useCompanies';
+import AddressPinIcon from '../icons/AddressPin';
 import ArrowLeft from '../icons/ArrowLeft';
 import HomePinIcon from '../icons/HomePin';
 import SearchIcon from '../icons/Search';
@@ -15,10 +18,28 @@ import Specialties from '../icons/Specialties';
 import Star from '../icons/Star';
 import VerifiedIcon from '../icons/Verified';
 import WalletIcon from '../icons/Wallet';
+import { SanityListingCompany } from '../types/Company';
 
-function DirectoryListing({ navigation }: any): React.JSX.Element {
+function DirectoryListing({ navigation, route }: any): React.JSX.Element {
+  const [company, setCompany] = useState<SanityListingCompany>();
+  const { isLoading, fetchCompany } = useCompanies();
+  const { id } = route.params;
+  console.log("DL", company);
+
+  useEffect(() => {
+    fetchCompany(id).then((company) => {
+      setCompany(company);
+    });
+  }, [fetchCompany]);
+
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView
+      style={{
+        flex: 1,
+        backgroundColor: '#FEFAF6',
+      }}
+      contentContainerStyle={{ paddingBottom: 50 }}
+    >
       {/*----- HEADER ------ */}
       <View style={styles.header}>
         <TouchableOpacity
@@ -38,87 +59,92 @@ function DirectoryListing({ navigation }: any): React.JSX.Element {
         </TouchableOpacity>
       </View>
       {/*----- BODY ------ */}
-      <View style={styles.body}>
-        <Image
-          source={{
-            uri: 'https://s3-alpha-sig.figma.com/img/99d2/0335/76ccfa10fb3c074f3b08562782414925?Expires=1702857600&Signature=RMnlfdr3yIPc6Hs8kyRq5SZq-FCet5gpqHhL32px~n0IGCYgZAK~kToiyRLxtshn7LitjD6xwXUeCHVmPo1ro7eQhA~BupAFHw0AiwXPEYJ6fwacPSg6U~XkGIbWrDlkJ0UG80dSAPZJTn3OklhLHD737He~6Kq1pMZwfux1t1mFZXX~CIm~t2oKgsaSuqSKtg-CrEaSbAx1X49g12KYrd3ttDW~1iAkiUjq6qICql2rrmNz1mVLcrk7K45dlfc~BBc~kZINGjMQTPqU1ybllh-dhJGdH~V2lg~lLWBwyFFKLFAeyR1iFKyNVdcRVtUrX-vkeJeKomVBlP~sClvqLQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-          }}
-          style={styles.fountainLogo}></Image>
-        <Text style={styles.fountainText}>
-          Fountain Life White Plains, New York
-        </Text>
-        <View style={{flexDirection: 'row', marginTop: 18 }}>
-          <VerifiedIcon width="97" height="25" />
-        </View>
-        <View style={[styles.whiteModule, {height: 63}]}>
-          <View style={styles.moduleLabel}>
-            <HomePinIcon />
-            <Text style={styles.moduleLabelText}>
-              2284 Peachtree Rd, Atlanta, GA, 30309
-            </Text>
-          </View>
-        </View>
-        <View style={styles.whiteModule}>
-          <View style={styles.moduleLabel}>
-            <Specialties />
-            <Text style={styles.moduleLabelText}>Specialties</Text>
-          </View>
-          <View style={styles.optionsView}>
-            <TouchableOpacity style={styles.optionModule}>
-              <Text style={styles.optionText}>ALS</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.optionModule}>
-              <Text style={styles.optionText}>Alzheimer's</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.optionModule}>
-              <Text style={styles.optionText}>Autism</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.whiteModule}>
-          <View style={styles.moduleLabel}>
-            <WalletIcon width="20" height="20" color="black" />
-            <Text style={styles.moduleLabelText}>Payment Options</Text>
-          </View>
-          <View style={styles.optionsView}>
-            <TouchableOpacity style={styles.optionModule}>
-              {/* <Image style={styles.optionImg}></Image> */}
-              <Text style={styles.optionText}>Credit Card</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.optionModule}>
-              <Shield />
-              <Text style={styles.optionText}>Insurance</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={[styles.whiteModule, {height: 97, flexDirection: 'row'}]}>
-          <View style={styles.userImgBackground}>
+      {isLoading ? (
+        <ActivityIndicator 
+          animating={isLoading}
+          color="#6751e1"
+          size="large"
+        />
+      ) : (
+        <View style={styles.body}>
+          {company?.logo?.url && (
             <Image
-              style={styles.userImg}
+              resizeMode='contain'
               source={{
-                uri: 'https://s3-alpha-sig.figma.com/img/79ea/427a/addde01d9b750b848963c45cf09789a5?Expires=1702857600&Signature=f6JkheIn3Fz-cHdN9t6g-O50kpkGmtw4Wsf~Crd37SZVJdC~3DPY9qJdc61R6gEWhMP5U0i83pDw0Xh4kvavMZwge-P1ELYrAoMlTKyXoJfrJZd6zOWE6eGS75IZqh-SaE2jxcDjlga3lFp4zMDOwxXyQ7aoavkRwiPmx5oRAv~8fygvfrdd0a3JIg19eXnMK6W0W36pi8GSEyUVc-EqgrD7Xeox1xkBDpqfYD2Wj-no6bwFkssfcWxyJaxqPXOu3YUCqw5X7Pv5DaUHeV-e1YLBhXSWN~HWWhNHGaiygZ6PniIusDPtrTUQ6OtHf-okPQ~bbqHhFKEhOwgMUE-hbQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4',
-              }}></Image>
+                uri: company?.logo.url,
+              }}
+              style={styles.fountainLogo}
+            />
+          )}
+          <Text style={styles.fountainText}>
+            {company?.name}
+          </Text>
+          <View style={{flexDirection: 'row', marginTop: 18 }}>
+            <VerifiedIcon width="97" height="25" />
           </View>
-          <View style={{marginLeft: 17}}>
-            <Text style={styles.userCharge}>
-              CHIEF MEDICAL OFFICER, ADVANTAGE IR
-            </Text>
-            <Text style={styles.userText}>
-              <Text>Dr. </Text>
-              <Text style={styles.userName}>David Wood</Text>
-            </Text>
+          <View style={[styles.whiteModule, {height: 63}]}>
+            <View style={styles.moduleLabel}>
+              <AddressPinIcon />
+              <Text style={styles.moduleLabelText}>
+                {company?.address.street}, {company?.address.city}, {company?.address.state}, {company?.address.zip}
+              </Text>
+            </View>
           </View>
+          <View style={styles.whiteModule}>
+            <View style={styles.moduleLabel}>
+              <Specialties />
+              <Text style={styles.moduleLabelText}>Specialties</Text>
+            </View>
+            <View style={styles.optionsView}>
+              <ScrollView horizontal>
+                {company?.treatments.map((treatment) => (
+                  <TouchableOpacity key={treatment} style={styles.optionModule}>
+                    <Text style={styles.optionText}>{treatment}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </View>
+          <View style={styles.whiteModule}>
+            <View style={styles.moduleLabel}>
+              <WalletIcon width="20" height="20" color="black" />
+              <Text style={styles.moduleLabelText}>Payment Options</Text>
+            </View>
+            <View style={styles.optionsView}>
+              <ScrollView horizontal>
+                {company?.paymentOptions.map((paymentOption) => (
+                  <TouchableOpacity style={styles.optionModule}>
+                    {paymentOption.icon !== "credit_card" && <Shield />}
+                    <Text style={styles.optionText}>{paymentOption.name}</Text>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          </View>
+          {(company?.leadPractitioner && company?.leadPractitioner?.firstname) && (
+            <View style={[styles.whiteModule, {height: 97, flexDirection: 'row' }]}>
+              <View style={styles.userImgBackground}>
+                <Image
+                  style={styles.userImg}
+                  resizeMode="cover"
+                  source={{
+                    uri: company?.leadPractitioner?.photo?.url,
+                  }}
+                />
+              </View>
+              <View style={{marginLeft: 17}}>
+                <Text style={styles.userCharge}>
+                  CHIEF MEDICAL OFFICER, ADVANTAGE IR
+                </Text>
+                <Text style={styles.userText}>
+                  <Text>{company?.leadPractitioner.title} </Text>
+                  <Text style={styles.userName}>{company?.leadPractitioner.firstname} {company?.leadPractitioner.lastname}</Text>
+                </Text>
+              </View>
+            </View>
+          )}
         </View>
-      </View>
-      {/*----- FOOTER ------ */}
-      <View style={styles.footer}>
-        <Star color="#FF6813" />
-        <Text style={styles.score}>5.0</Text>
-        <Text style={styles.reviews}>2.4k reviews</Text>
-        <TouchableOpacity style={styles.seeTimesButton}>
-          <Text style={styles.seeTimesText}>See times</Text>
-        </TouchableOpacity>
-      </View>
+      )}
     </ScrollView>
   );
 }
@@ -240,10 +266,10 @@ const styles = StyleSheet.create({
   },
   moduleLabelText: {
     color: 'black',
-    fontSize: 14,
+    fontSize: 13,
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    marginLeft: 11
+    marginLeft: 5,
   },
   moduleLabelImg: {
     width: 24,

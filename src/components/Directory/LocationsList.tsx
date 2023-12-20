@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,30 +6,40 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  ActivityIndicator,
 } from "react-native";
+import useCompanies from "../../hooks/useCompanies";
 import ArrowRight from "../../icons/ArrowRight";
 import Pin from "../../icons/Pin";
 import Speaker from "../../icons/Speaker";
 
 type LocationsListProps = {
-  onLocationPress: () => void;
+  onLocationPress: (companyId: string) => void;
 }
 
 type LocationProps = {
-  onViewListingPress: () => void;
+  _id: string;
+  name: string;
+  thumbnailUrl: string;
+  conditions: string[];
+  state: string;
+  onViewListingPress: (companyId: string) => void;
 }
 
 function Location(props: LocationProps) {
+  const handleViewListingPress = useCallback(() => {
+    props.onViewListingPress(props._id);
+  }, []);
+
   return (
     <View style={styles.locationContainer}>
         <View style={styles.locationTitleContainer}>
-          <Text style={styles.locationTitle}>Renegade Health OKC</Text>
+          <Text style={styles.locationTitle}>{props.name}</Text>
         </View>
         <View style={styles.locationImageContainer}>
           <Image
             style={styles.locationImage}
-            resizeMode="contain"
-            source={require("../../assets/doctors.jpg")}
+            source={{ uri: props.thumbnailUrl }}
           />
         </View>
         <View style={styles.conditionsTreatedContainer}>
@@ -39,24 +49,26 @@ function Location(props: LocationProps) {
         <ScrollView
           horizontal
           style={styles.conditionsTagsScroll}
-          contentContainerStyle={{ height: 39 }}
+          contentContainerStyle={styles.conditionsTagsContainer}
         >
-          <View style={styles.conditionTagContainer}>
-            <Text style={styles.conditionTagText}>Cardiac</Text>
-          </View>
-          <View style={styles.conditionTagContainer}>
-            <Text style={styles.conditionTagText}>Nutrition</Text>
-          </View>
-          <View style={styles.conditionTagContainer}>
-            <Text style={styles.conditionTagText}>Medical Weightloss</Text>
-          </View>
+          {props.conditions.map((condition) => (
+            <View
+              key={condition}
+              style={styles.conditionTagContainer}
+            >
+              <Text style={styles.conditionTagText}>{condition}</Text>
+            </View>
+          ))}
         </ScrollView>
 
         <View style={styles.locationDirectionContainer}>
           <Pin color="#101d4c" size="20" />
-          <Text style={styles.locationDirectionText}>Oklahoma</Text>
+          <Text style={styles.locationDirectionText}>{props.state}</Text>
           
-          <TouchableOpacity style={styles.viewListingContainer} onPress={props.onViewListingPress}>
+          <TouchableOpacity
+            style={styles.viewListingContainer}
+            onPress={handleViewListingPress}
+          >
             <Text style={styles.viewListingText}>View listing</Text>
             <ArrowRight color="#6751e1" />
           </TouchableOpacity>
@@ -66,14 +78,36 @@ function Location(props: LocationProps) {
 }
 
 function LocationsList(props: LocationsListProps) {
+  const {
+    companies,
+    isLoading,
+    fetchCompanies,
+  } = useCompanies();
+
+  useEffect(() => {
+    fetchCompanies();
+  }, [fetchCompanies]);
+  console.log("COMPANIES", companies)
   return (
     <View style={styles.locationsContainer}>
-
-      <Location onViewListingPress={props.onLocationPress} />
-      <Location onViewListingPress={props.onLocationPress} />
-      <Location onViewListingPress={props.onLocationPress} />
-      <Location onViewListingPress={props.onLocationPress} />
-
+      {isLoading && (
+        <ActivityIndicator
+          animating={isLoading}
+          color="#6751e1"
+          size="large"
+        />
+      )}
+      {companies.map((company) => (
+        <Location
+          key={company._id}
+          _id={company._id}
+          name={company.name}
+          thumbnailUrl={company.thumbnail.url}
+          conditions={company.conditions}
+          state={company.address.state}
+          onViewListingPress={props.onLocationPress}
+        />
+      ))}
     </View>
   );
 }
@@ -130,9 +164,11 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   conditionsTagsScroll: {
+    flex: 1,
     marginTop: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+  },
+  conditionsTagsContainer: {
+    paddingHorizontal: 20,
   },
   conditionTagContainer: {
     paddingHorizontal: 12,

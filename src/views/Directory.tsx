@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   View,
   Text,
@@ -13,12 +13,16 @@ import Search from "../components/Directory/Search";
 import Map from "../icons/Map";
 
 function Directory({ navigation }: any) {
+  const handleLocationListPress = useCallback((id: string) => {
+    navigation.navigate("DirectoryListing", { id });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Search />
       <ScrollView style={styles.container}>
         <Locations />
-        <LocationsList onLocationPress={() => navigation.navigate("DirectoryListing")} />
+        <LocationsList onLocationPress={handleLocationListPress} />
       </ScrollView>
       <View style={styles.mapButtonContainer}>
         <TouchableOpacity style={styles.mapButton}>

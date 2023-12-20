@@ -27,7 +27,7 @@ function BottomTabNavigator(props: any): JSX.Element {
     routeName === "ChatDetails" ||
     Route.name === "Profile" ||
     routeName === "BiomarkersForm" ||
-    routeName === "DirectoryListing"
+    routeName === "DirectoryListingDrawer"
   ) return <></>;
 
   return (

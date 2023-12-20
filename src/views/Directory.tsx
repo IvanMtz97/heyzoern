@@ -14,7 +14,7 @@ import Map from "../icons/Map";
 
 function Directory({ navigation }: any) {
   const handleLocationListPress = useCallback((id: string) => {
-    navigation.navigate("DirectoryListing", { id });
+    navigation.navigate("DirectoryListingDrawer", { id });
   }, []);
 
   return (

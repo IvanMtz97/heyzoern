@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import Directory from "../views/Directory";
-import DirectoryListing from "../views/DirectoryListing";
+import DirectoryListingNavigator from "./DirectoryListingDrawer";
 
 const Stack = createStackNavigator();
 
@@ -11,7 +11,7 @@ function BookingNavigator(): JSX.Element {
       headerShown: false,
     }}>
       <Stack.Screen name="DirectoryHome" component={Directory} />
-      <Stack.Screen name="DirectoryListing" component={DirectoryListing} />
+      <Stack.Screen name="DirectoryListingDrawer" component={DirectoryListingNavigator} />
     </Stack.Navigator>
   );
 }

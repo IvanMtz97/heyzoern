@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useRoute } from '@react-navigation/native';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -23,7 +24,11 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
   const [company, setCompany] = useState<SanityListingCompany>();
   const { isLoading, fetchCompany } = useCompanies();
   const { id } = route.params;
-  console.log("DL", company);
+  console.log("DL route", route);
+
+  const handleFindMyTreatmentPress = useCallback(() => {
+    navigation.openDrawer();
+  }, []);
 
   useEffect(() => {
     fetchCompany(id).then((company) => {
@@ -45,7 +50,10 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
           <View style={[styles.purpleDots, {left: 30, top: 28}]}></View>
           <View style={styles.purpleDots}></View>
         </View>
-        <TouchableOpacity style={styles.searchBar}>
+        <TouchableOpacity
+          style={styles.searchBar}
+          onPress={handleFindMyTreatmentPress}
+        >
           <SearchIcon color="white" />
           <Text style={styles.searchText}>Find my treatment</Text>
         </TouchableOpacity>

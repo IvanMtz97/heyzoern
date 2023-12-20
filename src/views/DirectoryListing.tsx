@@ -11,11 +11,10 @@ import {
 import useCompanies from '../hooks/useCompanies';
 import AddressPinIcon from '../icons/AddressPin';
 import ArrowLeft from '../icons/ArrowLeft';
-import HomePinIcon from '../icons/HomePin';
+import ArrowRight from '../icons/ArrowRight';
 import SearchIcon from '../icons/Search';
 import Shield from '../icons/Shield';
 import Specialties from '../icons/Specialties';
-import Star from '../icons/Star';
 import VerifiedIcon from '../icons/Verified';
 import WalletIcon from '../icons/Wallet';
 import { SanityListingCompany } from '../types/Company';
@@ -33,14 +32,7 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
   }, [fetchCompany]);
 
   return (
-    <ScrollView
-      style={{
-        flex: 1,
-        backgroundColor: '#FEFAF6',
-      }}
-      contentContainerStyle={{ paddingBottom: 50 }}
-    >
-      {/*----- HEADER ------ */}
+    <>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -58,94 +50,106 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
           <Text style={styles.searchText}>Find my treatment</Text>
         </TouchableOpacity>
       </View>
-      {/*----- BODY ------ */}
-      {isLoading ? (
-        <ActivityIndicator 
-          animating={isLoading}
-          color="#6751e1"
-          size="large"
-        />
-      ) : (
-        <View style={styles.body}>
-          {company?.logo?.url && (
-            <Image
-              resizeMode='contain'
-              source={{
-                uri: company?.logo.url,
-              }}
-              style={styles.fountainLogo}
-            />
-          )}
-          <Text style={styles.fountainText}>
-            {company?.name}
-          </Text>
-          <View style={{flexDirection: 'row', marginTop: 18 }}>
-            <VerifiedIcon width="97" height="25" />
-          </View>
-          <View style={[styles.whiteModule, {height: 63}]}>
-            <View style={styles.moduleLabel}>
-              <AddressPinIcon />
-              <Text style={styles.moduleLabelText}>
-                {company?.address.street}, {company?.address.city}, {company?.address.state}, {company?.address.zip}
-              </Text>
-            </View>
-          </View>
-          <View style={styles.whiteModule}>
-            <View style={styles.moduleLabel}>
-              <Specialties />
-              <Text style={styles.moduleLabelText}>Specialties</Text>
-            </View>
-            <View style={styles.optionsView}>
-              <ScrollView horizontal>
-                {company?.treatments.map((treatment) => (
-                  <TouchableOpacity key={treatment} style={styles.optionModule}>
-                    <Text style={styles.optionText}>{treatment}</Text>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-            </View>
-          </View>
-          <View style={styles.whiteModule}>
-            <View style={styles.moduleLabel}>
-              <WalletIcon width="20" height="20" color="black" />
-              <Text style={styles.moduleLabelText}>Payment Options</Text>
-            </View>
-            <View style={styles.optionsView}>
-              <ScrollView horizontal>
-                {company?.paymentOptions.map((paymentOption) => (
-                  <TouchableOpacity style={styles.optionModule}>
-                    {paymentOption.icon !== "credit_card" && <Shield />}
-                    <Text style={styles.optionText}>{paymentOption.name}</Text>
-                  </TouchableOpacity>
-                ))}
-              </ScrollView>
-            </View>
-          </View>
-          {(company?.leadPractitioner && company?.leadPractitioner?.firstname) && (
-            <View style={[styles.whiteModule, {height: 97, flexDirection: 'row' }]}>
-              <View style={styles.userImgBackground}>
+      <ScrollView
+        style={{
+          flex: 1,
+          backgroundColor: '#FEFAF6',
+        }}
+      >
+        {isLoading ? (
+          <ActivityIndicator 
+            animating={isLoading}
+            color="#6751e1"
+            size="large"
+          />
+        ) : (
+          <>
+            <View style={styles.body}>
+              {company?.logo?.url && (
                 <Image
-                  style={styles.userImg}
-                  resizeMode="cover"
+                  resizeMode='contain'
                   source={{
-                    uri: company?.leadPractitioner?.photo?.url,
+                    uri: company?.logo.url,
                   }}
+                  style={styles.fountainLogo}
                 />
+              )}
+              <Text style={styles.fountainText}>
+                {company?.name}
+              </Text>
+              <View style={{flexDirection: 'row', marginTop: 18 }}>
+                <VerifiedIcon width="97" height="25" />
               </View>
-              <View style={{marginLeft: 17}}>
-                <Text style={styles.userCharge}>
-                  CHIEF MEDICAL OFFICER, ADVANTAGE IR
-                </Text>
-                <Text style={styles.userText}>
-                  <Text>{company?.leadPractitioner.title} </Text>
-                  <Text style={styles.userName}>{company?.leadPractitioner.firstname} {company?.leadPractitioner.lastname}</Text>
-                </Text>
+              <View style={[styles.whiteModule]}>
+                <View style={styles.moduleLabel}>
+                  <AddressPinIcon />
+                  <Text style={styles.moduleLabelText}>
+                    {company?.address.street}, {company?.address.city}, {company?.address.state}, {company?.address.zip}
+                  </Text>
+                </View>
               </View>
+              <View style={styles.whiteModule}>
+                <View style={styles.moduleLabel}>
+                  <Specialties />
+                  <Text style={styles.moduleLabelText}>Specialties</Text>
+                </View>
+                <View style={styles.optionsView}>
+                  <ScrollView horizontal>
+                    {company?.treatments.map((treatment) => (
+                      <TouchableOpacity key={treatment} style={styles.optionModule}>
+                        <Text style={styles.optionText}>{treatment}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                </View>
+              </View>
+              <View style={styles.whiteModule}>
+                <View style={styles.moduleLabel}>
+                  <WalletIcon width="20" height="20" color="black" />
+                  <Text style={styles.moduleLabelText}>Payment Options</Text>
+                </View>
+                <View style={styles.optionsView}>
+                  <ScrollView horizontal>
+                    {company?.paymentOptions.map((paymentOption) => (
+                      <TouchableOpacity style={styles.optionModule}>
+                        {paymentOption.icon !== "credit_card" && <Shield />}
+                        <Text style={styles.optionText}>{paymentOption.name}</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
+                </View>
+              </View>
+              {(company?.leadPractitioner && company?.leadPractitioner?.firstname) && (
+                <View style={[styles.whiteModule, { flexDirection: 'row', marginBottom: 20 }]}>
+                  <View style={styles.userImgBackground}>
+                    <Image
+                      style={styles.userImg}
+                      resizeMode="cover"
+                      source={{
+                        uri: company?.leadPractitioner?.photo?.url,
+                      }}
+                    />
+                  </View>
+                  <View style={{marginLeft: 17}}>
+                    <Text style={styles.userCharge}>
+                      CHIEF MEDICAL OFFICER, ADVANTAGE IR
+                    </Text>
+                    <Text style={styles.userText}>
+                      <Text>{company?.leadPractitioner.title} </Text>
+                      <Text style={styles.userName}>{company?.leadPractitioner.firstname} {company?.leadPractitioner.lastname}</Text>
+                    </Text>
+                  </View>
+                </View>
+              )}
             </View>
-          )}
-        </View>
-      )}
-    </ScrollView>
+            <TouchableOpacity style={styles.footer}>
+              <Text style={styles.footerText}>Get started</Text>
+              <ArrowRight color="white" />
+            </TouchableOpacity>
+          </>
+        )}
+      </ScrollView>
+    </>
   );
 }
 
@@ -162,7 +166,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     marginTop: 30,
     alignItems: "center",
-    paddingHorizontal: 17,
+    paddingHorizontal: 16,
   },
   backButton: {
   },
@@ -220,9 +224,8 @@ const styles = StyleSheet.create({
   /* ------- BODY STYLES ------- */
   body: {
     backgroundColor: '#FEFAF6',
-    height: 690,
     width: '100%',
-    paddingLeft: 26,
+    paddingHorizontal: 16,
   },
   fountainLogo: {
     width: 128,
@@ -254,22 +257,21 @@ const styles = StyleSheet.create({
     borderColor: '#EAE6DE',
     borderStyle: 'solid',
     borderWidth: 1,
-    width: 349,
-    height: 114,
+    width: "100%",
     borderRadius: 20,
     marginTop: 23,
+    paddingHorizontal: 23,
+    paddingVertical: 17,
   },
   moduleLabel: {
     flexDirection: 'row',
-    marginTop: 19,
-    marginLeft: 23,
   },
   moduleLabelText: {
     color: 'black',
     fontSize: 13,
     fontFamily: 'Poppins',
     fontWeight: 'bold',
-    marginLeft: 5,
+    marginLeft: 15,
   },
   moduleLabelImg: {
     width: 24,
@@ -327,8 +329,6 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     overflow: 'hidden',
-    marginTop: 11,
-    marginLeft: 14,
   },
   userImg: {
     width: '100%',
@@ -339,18 +339,23 @@ const styles = StyleSheet.create({
     color: '#0C1D4F',
     fontSize: 10,
     fontFamily: 'Supply',
-    marginTop: 17,
+    marginTop: 10,
   },
   /* ------- FOOTER STYLES ------- */
   footer: {
-    backgroundColor: 'white',
-    height: 77,
+    backgroundColor: 'black',
+    height: 91,
     width: '100%',
     flexDirection: 'row',
     alignItems: "center",
-    paddingHorizontal: 21,
-    borderTopWidth: 1,
-    borderColor: "#F5EFE8"
+    paddingHorizontal: 16,
+    justifyContent: "space-between",
+  },
+  footerText: {
+    color: "white",
+    fontSize: 15,
+    fontWeight: "600",
+    letterSpacing: -0.225,
   },
   star: {
     width: 35,

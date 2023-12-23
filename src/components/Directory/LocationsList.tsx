@@ -42,24 +42,26 @@ function Location(props: LocationProps) {
             source={{ uri: props.thumbnailUrl }}
           />
         </View>
-        <View style={styles.conditionsTreatedContainer}>
-          <Speaker color="#101d4c" />
-          <Text style={styles.conditionsTreatedText}>Conditions Treated</Text>
+        <View style={styles.conditionsContainer}>
+          <View style={styles.conditionsTreatedContainer}>
+            <Speaker color="#101d4c" />
+            <Text style={styles.conditionsTreatedText}>Conditions Treated</Text>
+          </View>
+          <ScrollView
+            horizontal
+            style={styles.conditionsTagsScroll}
+            contentContainerStyle={styles.conditionsTagsContainer}
+          >
+            {props.conditions.map((condition) => (
+              <View
+                key={condition}
+                style={styles.conditionTagContainer}
+              >
+                <Text style={styles.conditionTagText}>{condition}</Text>
+              </View>
+            ))}
+          </ScrollView>
         </View>
-        <ScrollView
-          horizontal
-          style={styles.conditionsTagsScroll}
-          contentContainerStyle={styles.conditionsTagsContainer}
-        >
-          {props.conditions.map((condition) => (
-            <View
-              key={condition}
-              style={styles.conditionTagContainer}
-            >
-              <Text style={styles.conditionTagText}>{condition}</Text>
-            </View>
-          ))}
-        </ScrollView>
 
         <View style={styles.locationDirectionContainer}>
           <Pin color="#101d4c" size="20" />
@@ -120,7 +122,6 @@ const styles = StyleSheet.create({
   },
   locationContainer: {
     width: "100%",
-    height: 480,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#EAE6DE",
@@ -149,6 +150,9 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
     overflow: "hidden",
+  },
+  conditionsContainer: {
+    height: 110,
   },
   conditionsTreatedContainer: {
     flexDirection: "row",
@@ -186,7 +190,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   locationDirectionContainer: {
-    flex: 1,
+    width: "100%",
+    height: 60,
     flexDirection: "row",
     paddingHorizontal: 20,
     alignItems: "center",

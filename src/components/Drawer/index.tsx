@@ -11,6 +11,7 @@ import { useRoute } from "@react-navigation/native";
 import useCompanies from "../../hooks/useCompanies";
 import CloseIcon from "../../icons/Close";
 import { SanityListingCompany } from "../../types/Company";
+import ArrowRight from "../../icons/ArrowRight";
 
 function DrawerContent(props: any) {
   const route = useRoute<any>();
@@ -30,7 +31,7 @@ function DrawerContent(props: any) {
         <View style={styles.headerTopContainer}>
           <Image
             style={styles.logo} 
-            source={require("../../assets/zoelogo.png")}
+            source={{ uri: company?.logo?.url }}
             resizeMode="contain"
           />
 
@@ -49,8 +50,15 @@ function DrawerContent(props: any) {
         contentContainerStyle={styles.categoriesContentContainer}
       >
         {company?.conditions.map((condition: string) => (
-          <TouchableOpacity key={condition}>
-            <Text>{condition}</Text>
+          <TouchableOpacity
+            key={condition}
+            style={styles.categoryContainer}
+            onPress={() => {
+              props.navigation.navigate("DirectoryTreatmentDetails")
+            }}
+          >
+            <Text style={styles.categoryTitle}>{condition}</Text>
+            <ArrowRight color="#0C1D4F" />
           </TouchableOpacity>
         ))}
       </ScrollView>
@@ -103,6 +111,20 @@ const styles = StyleSheet.create({
   categoriesContentContainer: {
     paddingHorizontal: 16,
     paddingVertical: 10,
+  },
+  categoryContainer: {
+    width: "100%",
+    height: 53,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E0E0E0",
+    alignItems: "center",
+  },
+  categoryTitle: {
+    color: "black",
+    fontSize: 14,
+    fontWeight: "500",
   },
 });
 

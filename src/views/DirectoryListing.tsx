@@ -13,6 +13,7 @@ import useCompanies from '../hooks/useCompanies';
 import AddressPinIcon from '../icons/AddressPin';
 import ArrowLeft from '../icons/ArrowLeft';
 import ArrowRight from '../icons/ArrowRight';
+import HeyZoeIcon from '../icons/HeyZoe';
 import SearchIcon from '../icons/Search';
 import Shield from '../icons/Shield';
 import Specialties from '../icons/Specialties';
@@ -24,7 +25,6 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
   const [company, setCompany] = useState<SanityListingCompany>();
   const { isLoading, fetchCompany } = useCompanies();
   const { id } = route.params;
-  console.log("DL route", route);
 
   const handleFindMyTreatmentPress = useCallback(() => {
     navigation.openDrawer();
@@ -45,11 +45,7 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
         >
           <ArrowLeft size="30" />
         </TouchableOpacity>
-        <View style={styles.hLogo}>
-          <Text style={styles.hLetter}>h</Text>
-          <View style={[styles.purpleDots, {left: 30, top: 28}]}></View>
-          <View style={styles.purpleDots}></View>
-        </View>
+        <HeyZoeIcon />
         <TouchableOpacity
           style={styles.searchBar}
           onPress={handleFindMyTreatmentPress}
@@ -132,7 +128,7 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
                   <View style={styles.userImgBackground}>
                     <Image
                       style={styles.userImg}
-                      resizeMode="cover"
+                      resizeMode="contain"
                       source={{
                         uri: company?.leadPractitioner?.photo?.url,
                       }}
@@ -150,7 +146,10 @@ function DirectoryListing({ navigation, route }: any): React.JSX.Element {
                 </View>
               )}
             </View>
-            <TouchableOpacity style={styles.footer}>
+            <TouchableOpacity
+              style={styles.footer}
+              onPress={() => navigation.navigate("DirectoryAppointmentRequest")}
+            >
               <Text style={styles.footerText}>Get started</Text>
               <ArrowRight color="white" />
             </TouchableOpacity>
@@ -177,6 +176,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   backButton: {
+    marginRight: 27,
   },
   backButtonText: {
     color: 'black',
@@ -339,8 +339,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   userImg: {
-    width: '100%',
-    height: 107,
+    flex: 1,
     marginBottom: 0,
   },
   userCharge: {

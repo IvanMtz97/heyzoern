@@ -13,7 +13,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import BottomSheet, { BottomSheetScrollView } from '@gorhom/bottom-sheet';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import NotificationIcon from "../icons/Notification";
-import ArrowLeft from "../icons/ArrowLeft";
 import ArrowRight from "../icons/ArrowRight";
 import GradientText from "../components/GradientText";
 import Stepper from "../components/Stepper";
@@ -21,7 +20,6 @@ import StackedCards from "../components/StackedCards";
 import ApplePayIcon from "../icons/ApplePay";
 import SmsText from "../icons/Sms";
 import CheckBox from '../components/Checkbox';
-import AmexIcon from "../icons/Amex";
 import { toDp } from "../utils/sizes";
 import QrCard from "../components/QrCard";
 import BackButton from "../components/BackButton";
@@ -169,14 +167,20 @@ function ProfileView({ navigation }: any): JSX.Element {
 
             <View style={styles.sectionContainer}>
               <View style={styles.paymentMethodHeader}>
-                <Text style={styles.sectionLabel}>Payment methoder</Text>
-                <TouchableOpacity style={styles.paymentMethodHeaderButton}>
+                <Text style={styles.sectionLabel}>Payment method</Text>
+                <TouchableOpacity
+                  style={styles.paymentMethodHeaderButton}
+                  onPress={() => navigation.navigate("PaymentMethod")}
+                >
                   <Text style={styles.paymentMethodHeaderButtonIcon}>+</Text>
                   <Text style={styles.paymentMethodHeaderButtonText}>Add</Text>
                 </TouchableOpacity>
               </View>
 
-              <TouchableOpacity style={styles.paymentMethodItem}>
+              <TouchableOpacity
+                style={styles.paymentMethodItem}
+                onPress={() => navigation.navigate("AmexPaymentMethod")}
+              >
                 <View style={styles.amexContainer}>
                   <Image style={styles.amexIcon} source={require("../assets/amex.png")} />
                 </View>

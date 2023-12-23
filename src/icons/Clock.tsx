@@ -3,8 +3,8 @@ import Svg, { Path } from "react-native-svg";
 const ClockIcon = (props: any) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width="12"
-    height="12"
+    width={props.size || "12"}
+    height={props.size || "12"}
     viewBox="0 0 12 12"
     fill="none"
     {...props}

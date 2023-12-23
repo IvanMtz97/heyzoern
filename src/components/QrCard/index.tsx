@@ -35,7 +35,7 @@ function QrCard(props: Props) {
         <View style={styles.gradientCardHeader}>
           <ZoeLogoIcon />
           <View>
-            <Text style={styles.gradientCardDate}>Joined {format(new Date(user?.activeTenant.createdAt + ""), "MMMM d, yyyy")}</Text>
+            {/* <Text style={styles.gradientCardDate}>Joined {format(new Date(user?.activeTenant.createdAt + ""), "MMMM d, yyyy")}</Text> */}
             <Text style={styles.gradientCardName}>{user?.name}</Text>
           </View>
         </View>

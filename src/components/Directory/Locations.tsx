@@ -16,6 +16,7 @@ function Locations() {
       </View>
       <ScrollView
         style={styles.locationsScrollContainer}
+        contentContainerStyle={styles.locationsScrollContentContainer}
         horizontal
       >
           
@@ -54,8 +55,9 @@ function Locations() {
 const styles = StyleSheet.create({
   locationsContainer: {
     width: "100%",
-    height: 200,
+    height: 160,
     backgroundColor: "white",
+    marginBottom: 40,
   },
   locationsTitleContainer: {
     width: "100%",
@@ -71,7 +73,9 @@ const styles = StyleSheet.create({
   },
   locationsScrollContainer: {
     flex: 1,
-    paddingHorizontal: 25,
+  },
+  locationsScrollContentContainer: {
+    paddingHorizontal: 16,
   },
   locationContainer: {
     width: 243,
@@ -79,7 +83,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "#EAE6DE",
-    backgroundColor: "white",
+    backgroundColor: "#FEFAF6",
     marginRight: 17,
     paddingVertical: 17,
     paddingHorizontal: 27,

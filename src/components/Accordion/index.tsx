@@ -15,10 +15,11 @@ type AccordionProps = {
   title: string;
   isExpanded: boolean;
   children: JSX.Element;
+  noPadding?: boolean;
   onPress: () => void;
 }
 
-function Accordion({ title, isExpanded, children, onPress }: AccordionProps): JSX.Element {
+function Accordion({ title, isExpanded, children, onPress, noPadding }: AccordionProps): JSX.Element {
   useEffect(() => {
     if (Platform.OS === "android") {
       UIManager.setLayoutAnimationEnabledExperimental(true);
@@ -32,7 +33,7 @@ function Accordion({ title, isExpanded, children, onPress }: AccordionProps): JS
   }, [isExpanded]);
 
   return (
-    <View style={styles.accordionContainer}>
+    <View style={[styles.accordionContainer, { paddingHorizontal: noPadding? 0 : 40 }]}>
       <TouchableOpacity style={styles.collapseContainer} onPress={onPress}>
         <Text style={styles.accordionTitle}>{title}</Text>
         {isExpanded ? <ArrowUp /> : <ArrowDown />}
@@ -49,7 +50,6 @@ function Accordion({ title, isExpanded, children, onPress }: AccordionProps): JS
 const styles = StyleSheet.create({
   accordionContainer: {
     flexDirection: "column",
-    paddingHorizontal: 40,
     borderBottomWidth: 1,
     borderBottomColor: "#DCDCDC",
   },

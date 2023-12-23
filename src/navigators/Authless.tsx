@@ -20,7 +20,7 @@ function Authless() {
 
   useEffect(() => {
     if (!initializing && !isAuthenticated) {
-      login();
+      // login();
     }
   }, [initializing, isAuthenticated, isLoading]);
 
@@ -35,7 +35,7 @@ function Authless() {
     );
   }
 
-  if (!initializing && !isLoading && !isAuthenticated) {
+  /* if (!initializing && !isLoading && !isAuthenticated) {
     return (
       <SafeAreaView style={styles.container}>
         <Text>Not authenticated</Text>
@@ -47,7 +47,7 @@ function Authless() {
         </TouchableOpacity>
       </SafeAreaView>
     );
-  }
+  } */
 
   return <Application />;
 }

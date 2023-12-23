@@ -13,7 +13,10 @@ type Props = {
 
 function BackButton(props: Props) {
   return (
-    <TouchableOpacity onPress={props.onPress} style={styles.container}>
+    <TouchableOpacity
+      onPress={props.onPress}
+      style={styles.container}
+    >
       <View style={styles.buttonContainer}>
         <ArrowLeft />
       </View>

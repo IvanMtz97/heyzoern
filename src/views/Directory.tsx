@@ -20,10 +20,7 @@ function Directory({ navigation }: any) {
   return (
     <SafeAreaView style={styles.container}>
       <Search />
-      <ScrollView style={styles.container}>
-        <Locations />
-        <LocationsList onLocationPress={handleLocationListPress} />
-      </ScrollView>
+      <LocationsList onLocationPress={handleLocationListPress} />
       <View style={styles.mapButtonContainer}>
         <TouchableOpacity style={styles.mapButton}>
           <Text style={styles.mapButtonText}>Map</Text>

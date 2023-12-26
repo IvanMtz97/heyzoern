@@ -7,26 +7,26 @@ function useCompanies() {
   const { client } = useSanity();
   const [isLoading, setIsLoading] = useState(false);
   const [companies, setCompanies] = useState<SanityListingCompany[]>([]);
-  const [page, setPage] = useState(0);
 
-  const fetchCompanies = useCallback(async () => {
+  const fetchCompanies = useCallback(async (currentPage: number) => {
     setIsLoading(true);
-    const data = await client?.fetch<SanityListingCompany[]>(getListingCompaniesQuery(page, 10));
-    setCompanies(data || []);
+    const data = await client?.fetch<SanityListingCompany[]>(getListingCompaniesQuery(currentPage, 10));
+    const newData = data || [];
+    const newCompanies = [...companies, ...newData].flat();
+    setCompanies(newCompanies);
     setIsLoading(false);
-  }, [page]);
+  }, []);
 
   const fetchCompany = useCallback(async (id: string) => {
     setIsLoading(true);
     const data = await client?.fetch<SanityListingCompany>(getListingCompany(id));
-    console.log("DATA", data);
     setIsLoading(false);
     if (Array.isArray(data)) {
       return data[0];
     }
     return null;
   }, []);
-
+  
   return {
     companies,
     isLoading,

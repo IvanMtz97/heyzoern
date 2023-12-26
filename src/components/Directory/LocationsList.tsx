@@ -7,11 +7,13 @@ import {
   ScrollView,
   Image,
   ActivityIndicator,
+  FlatList,
 } from "react-native";
 import useCompanies from "../../hooks/useCompanies";
 import ArrowRight from "../../icons/ArrowRight";
 import Pin from "../../icons/Pin";
 import Speaker from "../../icons/Speaker";
+import Locations from "./Locations";
 
 type LocationsListProps = {
   onLocationPress: (companyId: string) => void;
@@ -85,31 +87,45 @@ function LocationsList(props: LocationsListProps) {
     isLoading,
     fetchCompanies,
   } = useCompanies();
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
-    fetchCompanies();
-  }, [fetchCompanies]);
-  console.log("COMPANIES", companies)
+    if (!isLoading) {
+      fetchCompanies(page);
+    }
+  }, [page, fetchCompanies]);
+
   return (
     <View style={styles.locationsContainer}>
-      {isLoading && (
-        <ActivityIndicator
-          animating={isLoading}
-          color="#6751e1"
-          size="large"
-        />
-      )}
-      {companies.map((company) => (
-        <Location
-          key={company._id}
-          _id={company._id}
-          name={company.name}
-          thumbnailUrl={company.thumbnail.url}
-          conditions={company.conditions}
-          state={company.address.state}
-          onViewListingPress={props.onLocationPress}
-        />
-      ))}
+      <FlatList
+        data={companies}
+        ListHeaderComponent={Locations}
+        renderItem={({ item }) => (
+          <View style={styles.locationView}>
+            <Location
+              _id={item._id}
+              name={item.name}
+              thumbnailUrl={item.thumbnail?.url}
+              conditions={item.conditions}
+              state={item.address.state}
+              onViewListingPress={props.onLocationPress}
+            />
+          </View>
+        )}
+        ListFooterComponent={(
+          <View style={styles.listFooterContainer}>
+            {isLoading && (
+              <ActivityIndicator
+                animating={isLoading}
+                color="#6751e1"
+                size="large"
+              />
+            )}
+          </View>
+        )}
+        keyExtractor={(item) => item._id}
+        onEndReached={() => setPage((prev) => prev + 1)}
+      />
     </View>
   );
 }
@@ -117,8 +133,13 @@ function LocationsList(props: LocationsListProps) {
 const styles = StyleSheet.create({
   locationsContainer: {
     width: "100%",
-    paddingHorizontal: 20,
     paddingBottom: 60,
+  },
+  locationView: {
+    paddingHorizontal: 16,
+  },
+  listFooterContainer: {
+    height: 200,
   },
   locationContainer: {
     width: "100%",
